@@ -249,11 +249,13 @@
       transform: translate(-50%, -50%);
       font-family: var(--font-display);
       font-size: clamp(50px, 8vw, 150px);
-      font-weight: 300;
+      font-weight: 800;
       letter-spacing: -0.04em;
-      color: transparent;
+      color: rgba(200, 255, 0, 0.1);
       -webkit-text-stroke: 1.5px rgba(200, 255, 0, 0.25);
-      white-space: nowrap;
+      text-align: center;
+      line-height: 1.1;
+      width: 100vw;
       user-select: none;
       pointer-events: none;
       animation: intentPulse 8s ease-in-out infinite;
@@ -1322,6 +1324,7 @@
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('works')">Works</a></li>
       <li><a href="#" onclick="showPage('about')">About</a></li>
+      <!-- <li><a href="#" onclick="showPage('playground')">Playground</a></li> -->
       <li><a href="#"
           onclick="showPage('home'); setTimeout(()=>document.querySelector('.contact-section').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
       </li>
@@ -1337,7 +1340,8 @@
         <div class="hero-orb orb-1"></div>
         <div class="hero-orb orb-2"></div>
       </div>
-      <div class="intent-bg-text parallax-layer" data-speed="0.3"><span id="intentWord" class="intent-word-inner">INTENT-LED EXPERIENCES</span></div>
+      <div class="intent-bg-text parallax-layer" data-speed="0.3"><span id="intentWord"
+          class="intent-word-inner">INTENT-LED<br>EXPERIENCES</span></div>
 
       <div class="hero-eyebrow">Studio3.design — Est. 2024</div>
       <h1 class="hero-title">
@@ -1346,7 +1350,8 @@
         <em>intent.</em>
       </h1>
       <div class="hero-bottom">
-        <p class="hero-desc">Three designers. One obsession.<br>We build experiences that begin with purpose and end with meaning.</p>
+        <p class="hero-desc">Three designers. One obsession.<br>We build experiences that begin with purpose and end
+          with meaning.</p>
         <div class="hero-scroll">
           <div class="scroll-line"></div>
           <span>Scroll</span>
@@ -1427,7 +1432,8 @@
 
         <div class="founder-card reveal reveal-delay-1">
           <div class="founder-avatar">
-            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Kuljit Kondral</div>
           <div class="founder-role">Research Director</div>
@@ -1439,7 +1445,8 @@
 
         <div class="founder-card reveal reveal-delay-2">
           <div class="founder-avatar">
-            <img src="images/founder-baris.png" alt="Tolga Inam" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-baris.png" alt="Tolga Inam"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Tolga Inam</div>
           <div class="founder-role">Head of Tech &amp; UX</div>
@@ -1450,7 +1457,8 @@
 
         <div class="founder-card reveal reveal-delay-3">
           <div class="founder-avatar">
-            <img src="images/founder-tolga.png" alt="Baris Ertufan" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-tolga.png" alt="Baris Ertufan"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Baris Ertufan</div>
           <div class="founder-role">Visual Director</div>
@@ -1958,7 +1966,8 @@
       <div class="founders-grid">
         <div class="founder-card reveal reveal-delay-1">
           <div class="founder-avatar">
-            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Kuljit Kondral</div>
           <div class="founder-role">Research Director</div>
@@ -1969,7 +1978,8 @@
         </div>
         <div class="founder-card reveal reveal-delay-2">
           <div class="founder-avatar">
-            <img src="images/founder-baris.png" alt="Tolga Inam" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-baris.png" alt="Tolga Inam"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Tolga Inam</div>
           <div class="founder-role">Head of Tech & UX</div>
@@ -1980,7 +1990,8 @@
         </div>
         <div class="founder-card reveal reveal-delay-3">
           <div class="founder-avatar">
-            <img src="images/founder-tolga.png" alt="Baris Ertufan" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="images/founder-tolga.png" alt="Baris Ertufan"
+              style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
           <div class="founder-name">Baris Ertufan</div>
           <div class="founder-role">Visual Director</div>
@@ -2003,6 +2014,166 @@
       <span class="footer-copy">© 2024 Studio3.design</span>
     </footer>
   </div>
+
+  <!-- ═══════════════ PLAYGROUND PAGE ═══════════════ -->
+  <div id="playground" class="page" style="background: var(--accent); color: var(--black); min-height: 400vh; position: relative;">
+    <style>
+      .pg-sticky { position: sticky; top: 0; width: 100vw; height: 100vh; overflow: hidden; display: flex; align-items: center; justify-content: center; perspective: 1200px; }
+      .pg-scene { display: flex; gap: 8vw; position: absolute; z-index: 2; transform-style: preserve-3d; transition: opacity 0.4s; }
+      .pg-cube { width: 15vw; height: 50vh; position: relative; transform-style: preserve-3d; transform: rotateY(85deg); }
+      .pg-face { position: absolute; display: flex; align-items: center; justify-content: center; backface-visibility: hidden; box-sizing: border-box; }
+      .pg-front { width: 100%; height: 100%; transform: rotateY(0deg) translateZ(40px); font-family: var(--font-display); font-size: clamp(40px, 6vw, 150px); font-weight: 300; font-style: italic; color: var(--black); text-transform: uppercase; overflow: visible; }
+      .pg-front.t-3 { font-family: var(--font-ui); font-style: normal; font-size: clamp(80px, 14vw, 250px); font-weight: 800; line-height: 1; }
+      .pg-right { width: 80px; height: 100%; background: var(--black); transform: rotateY(90deg) translateZ(7.5vw); box-shadow: inset 0 0 20px rgba(0,0,0,0.8); }
+      .pg-left { width: 80px; height: 100%; background: #080806; transform: rotateY(-90deg) translateZ(7.5vw); }
+      .pg-bento { position: absolute; width: 80vw; height: 70vh; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 24px; z-index: 4; opacity: 0; pointer-events: none; transition: opacity 1s ease, transform 1s ease; transform: translateY(100px); }
+      .pg-bento-item { background: var(--black); border-radius: 12px; color: var(--offwhite); padding: 32px; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+    <div class="pg-sticky">
+      <div id="pgScene" class="pg-scene">
+        <div class="pg-cube">
+          <div class="pg-face pg-front">STUDIO</div>
+          <div class="pg-face pg-right"></div>
+          <div class="pg-face pg-left"></div>
+        </div>
+        <div class="pg-cube">
+          <div class="pg-face pg-front t-3">3</div>
+          <div class="pg-face pg-right"></div>
+          <div class="pg-face pg-left"></div>
+        </div>
+        <div class="pg-cube">
+          <div class="pg-face pg-front">DESIGN</div>
+          <div class="pg-face pg-right"></div>
+          <div class="pg-face pg-left"></div>
+        </div>
+      </div>
+
+      <canvas id="pgSmokeCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3; opacity: 0; transition: opacity 0.5s ease;"></canvas>
+
+      <div id="pgBentoGrid" class="pg-bento">
+        <div class="pg-bento-item" style="grid-column: span 2;">
+          <div style="font-family: var(--font-mono); font-size: 14px; opacity: 0.5; margin-bottom: 8px;">Experiment 01</div>
+          <h2 style="font-family: var(--font-display); font-size: 40px; color: var(--accent); font-weight: 300; margin: 0;">Interactive Orbs</h2>
+        </div>
+        <div class="pg-bento-item" style="align-items: center;">
+          <span style="font-family: var(--font-ui); font-size: 24px; font-weight: 800;">XYZ</span>
+        </div>
+        <div class="pg-bento-item"></div>
+        <div class="pg-bento-item"></div>
+        <div class="pg-bento-item" style="align-items: flex-end; justify-content: flex-end;">
+          <div style="width: 100%; height: 2px; background: var(--accent);"></div>
+        </div>
+      </div>
+
+      <p style="position: absolute; bottom: 30px; font-family: var(--font-mono); font-size: 12px; color: rgba(0,0,0,0.5); text-transform: uppercase; letter-spacing: 0.1em; pointer-events: none;">Scroll down to explore</p>
+    </div>
+  </div>
+
+  <script>
+    // ═══ PLAYGROUND LOGIC ═══
+    const pg = document.getElementById('playground');
+    const pgCubes = document.querySelectorAll('.pg-cube');
+    const pgScene = document.getElementById('pgScene');
+    const pgBento = document.getElementById('pgBentoGrid');
+    const pgSmokeCanvas = document.getElementById('pgSmokeCanvas');
+    let pgCtx = pgSmokeCanvas.getContext('2d');
+    
+    let smokes = [];
+    let smokeActive = false;
+    
+    function initSmoke() {
+      pgSmokeCanvas.width = window.innerWidth;
+      pgSmokeCanvas.height = window.innerHeight;
+      smokes = [];
+      for (let i = 0; i < 150; i++) {
+        smokes.push({
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 600,
+          y: window.innerHeight / 2 + (Math.random() - 0.5) * 300,
+          vx: (Math.random() - 0.5) * 5,
+          vy: (Math.random() - 0.5) * 5 - 1,
+          size: Math.random() * 80 + 30,
+          opacity: Math.random() * 0.4 + 0.1
+        });
+      }
+      smokeActive = true;
+      requestAnimationFrame(drawSmoke);
+    }
+    
+    function drawSmoke() {
+      if (!smokeActive) return;
+      pgCtx.clearRect(0, 0, pgSmokeCanvas.width, pgSmokeCanvas.height);
+      let alive = false;
+      smokes.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.size += 0.8;
+        p.opacity -= 0.003;
+        
+        if (p.opacity > 0) {
+          alive = true;
+          pgCtx.beginPath();
+          pgCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          pgCtx.fillStyle = `rgba(10, 10, 8, ${p.opacity})`;
+          pgCtx.fill();
+        }
+      });
+      if (alive) {
+        requestAnimationFrame(drawSmoke);
+      } else {
+        smokeActive = false;
+      }
+    }
+    
+    window.addEventListener('scroll', () => {
+      if (!pg.classList.contains('active')) return;
+      
+      const maxScroll = pg.scrollHeight - window.innerHeight;
+      const progress = Math.min(1, Math.max(0, window.scrollY / (maxScroll || 1)));
+      
+      // Phase 1: Rotation
+      pgCubes.forEach((cube, i) => {
+        let cubeP = Math.max(0, Math.min(1, (progress - i * 0.05) / 0.45));
+        let cEase = 1 - Math.pow(1 - cubeP, 3);
+        let cAngle = 85 - (cEase * 85);
+        cube.style.transform = `rotateY(${cAngle}deg)`;
+      });
+      
+      // Phase 2: Smoke and disappearance 
+      if (progress > 0.5 && progress < 0.8) {
+        if (!smokeActive) {
+          initSmoke();
+          pgSmokeCanvas.style.opacity = '1';
+        }
+      } else if (progress <= 0.5) {
+        pgSmokeCanvas.style.opacity = '0';
+        smokeActive = false;
+      }
+      
+      if (progress > 0.55) {
+        pgScene.style.opacity = '0';
+      } else {
+        pgScene.style.opacity = '1';
+      }
+      
+      // Phase 3: Bento Grid
+      if (progress > 0.65) {
+        pgBento.style.opacity = '1';
+        pgBento.style.transform = 'translateY(0)';
+        pgBento.style.pointerEvents = 'auto';
+      } else {
+        pgBento.style.opacity = '0';
+        pgBento.style.transform = 'translateY(100px)';
+        pgBento.style.pointerEvents = 'none';
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if(pgSmokeCanvas) {
+        pgSmokeCanvas.width = window.innerWidth;
+        pgSmokeCanvas.height = window.innerHeight;
+      }
+    });
+  </script>
 
   <script>
     // ═══ PAGE ROUTER ═══
@@ -2099,13 +2270,13 @@
 
     let particles = [];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 150; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2
+        vx: (Math.random() - 0.5) * 1.5,
+        vy: (Math.random() - 0.5) * 1.5,
+        size: Math.random() * 4 + 1
       });
     }
 
@@ -2113,15 +2284,36 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach(p => {
+        // cursor repel logic
+        let dx = p.x - mx;
+        let dy = p.y - my;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < 150) {
+          let force = (150 - dist) / 150;
+          p.vx += (dx / dist) * force * 0.8;
+          p.vy += (dy / dist) * force * 0.8;
+        }
+
+        // Apply friction
+        p.vx *= 0.98;
+        p.vy *= 0.98;
+
+        // Maintain basic ambient motion if too slow
+        if (Math.abs(p.vx) < 0.2) p.vx += (Math.random() - 0.5) * 0.15;
+        if (Math.abs(p.vy) < 0.2) p.vy += (Math.random() - 0.5) * 0.15;
+
         p.x += p.vx;
         p.y += p.vy;
 
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        if (p.x < 0) { p.x = 0; p.vx *= -1; }
+        if (p.x > canvas.width) { p.x = canvas.width; p.vx *= -1; }
+        if (p.y < 0) { p.y = 0; p.vy *= -1; }
+        if (p.y > canvas.height) { p.y = canvas.height; p.vy *= -1; }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255,255,255,0.3)";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
         ctx.fill();
       });
 
@@ -2132,7 +2324,7 @@
 
     // ═══ BG TEXT CYCLE ═══
     const intentWordsArray = [
-      "Intent-led experiences",
+      "Intent-led<br>experiences",
       "UI/UX",
       "Research & Insights",
       "Future thinking",
@@ -2145,7 +2337,7 @@
         intentWordEl.style.opacity = '0';
         setTimeout(() => {
           intentWordIndex = (intentWordIndex + 1) % intentWordsArray.length;
-          intentWordEl.textContent = intentWordsArray[intentWordIndex].toUpperCase();
+          intentWordEl.innerHTML = intentWordsArray[intentWordIndex].toUpperCase();
           intentWordEl.style.opacity = '1';
         }, 500);
       }, 3000);
