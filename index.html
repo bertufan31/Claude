@@ -1,1670 +1,2156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<link rel="stylesheet" href="css/style.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio3.design — Intent-Led Experiences</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --black: #0a0a08;
-    --offwhite: #f0ede6;
-    --accent: #c8ff00;
-    --muted: #5a5a52;
-    --border: rgba(240,237,230,0.1);
-    --font-display: 'Cormorant Garamond', serif;
-    --font-ui: 'Syne', sans-serif;
-    --font-mono: 'DM Mono', monospace;
-  }
+  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio3.design — Intent-Led Experiences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Syne:wght@400;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --black: #0a0a08;
+      --offwhite: #f0ede6;
+      --accent: #c8ff00;
+      --muted: #5a5a52;
+      --border: rgba(240, 237, 230, 0.1);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-ui: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
 
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  html { scroll-behavior: smooth; font-size: 16px; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
 
-  <script src="js/script.js"></script>
-  body {
-    background: var(--black);
-    color: var(--offwhite);
-    font-family: var(--font-ui);
-    overflow-x: hidden;
-    cursor: none;
-  }
+    body {
+      background: var(--black);
+      color: var(--offwhite);
+      font-family: var(--font-ui);
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-  /* CUSTOM CURSOR */
-  .cursor {
-    position: fixed;
-    width: 10px; height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background 0.3s;
-    mix-blend-mode: exclusion;
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 40px; height: 40px;
-    border: 1px solid var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: all 0.15s ease;
-    mix-blend-mode: exclusion;
-    opacity: 0.6;
-  }
-  body:hover .cursor { opacity: 1; }
+    /* CUSTOM CURSOR */
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+      mix-blend-mode: exclusion;
+    }
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 48px;
-    mix-blend-mode: normal;
-  }
-  nav::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, var(--black), transparent);
-    pointer-events: none;
-  }
-  .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    color: var(--offwhite);
-    text-decoration: none;
-    position: relative;
-    z-index: 1;
-  }
-  .nav-logo span { color: var(--accent); }
-  .nav-links {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-    position: relative;
-    z-index: 1;
-  }
-  .nav-links a {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--offwhite);
-    text-decoration: none;
-    opacity: 0.5;
-    transition: opacity 0.3s;
-    position: relative;
-  }
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -3px; left: 0;
-    width: 0; height: 1px;
-    background: var(--accent);
-    transition: width 0.3s;
-  }
-  .nav-links a:hover { opacity: 1; }
-  .nav-links a:hover::after { width: 100%; }
+    .cursor-ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+      mix-blend-mode: exclusion;
+      opacity: 0.6;
+    }
 
-  /* PAGE SYSTEM */
-  .page { display: none; min-height: 100vh; }
-  .page.active { display: block; }
+    body:hover .cursor {
+      opacity: 1;
+    }
 
-  /* ═══════════════════════════════════
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 48px;
+      mix-blend-mode: normal;
+    }
+
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, var(--black), transparent);
+      pointer-events: none;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      color: var(--offwhite);
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--offwhite);
+      text-decoration: none;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* PAGE SYSTEM */
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ═══════════════════════════════════
      HOME PAGE
   ═══════════════════════════════════ */
-  #home { position: relative; overflow: hidden; }
+    #home {
+      position: relative;
+      overflow: hidden;
+    }
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 48px 80px;
-    position: relative;
-  }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 80px;
+      position: relative;
+    }
 
-  /* ANIMATED BACKGROUND */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-  }
-  .hero-bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
-    background-size: 80px 80px;
-    animation: gridDrift 20s linear infinite;
-  }
-  @keyframes gridDrift {
-    from { transform: translateY(0); }
-    to { transform: translateY(80px); }
-  }
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    animation: orbFloat 12s ease-in-out infinite;
-  }
-  .orb-1 {
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(200,255,0,0.08), transparent 70%);
-    top: -200px; right: -100px;
-    animation-delay: 0s;
-  }
-  .orb-2 {
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(200,255,0,0.05), transparent 70%);
-    bottom: 100px; left: -100px;
-    animation-delay: -6s;
-  }
-  @keyframes orbFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-40px) scale(1.05); }
-  }
+    /* ANIMATED BACKGROUND */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
 
-  /* INTENT word large */
-  .intent-bg-text {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--font-display);
-    font-size: clamp(180px, 22vw, 380px);
-    font-weight: 300;
-    letter-spacing: -0.04em;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(200,255,0,0.08);
-    white-space: nowrap;
-    user-select: none;
-    pointer-events: none;
-    animation: intentPulse 8s ease-in-out infinite;
-  }
-  @keyframes intentPulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.02); }
-  }
+    .hero-bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200, 255, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 255, 0, 0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: gridDrift 20s linear infinite;
+    }
 
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-    opacity: 0;
-    animation: fadeUp 1s 0.3s forwards;
-  }
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(56px, 8vw, 130px);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: 48px;
-    opacity: 0;
-    animation: fadeUp 1s 0.5s forwards;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    opacity: 0;
-    animation: fadeUp 1s 0.8s forwards;
-  }
-  .hero-desc {
-    max-width: 380px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    line-height: 1.8;
-    color: var(--muted);
-  }
-  .hero-scroll {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  .scroll-line {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-  @keyframes scrollLine {
-    0% { transform: scaleY(0); transform-origin: top; }
-    50% { transform: scaleY(1); transform-origin: top; }
-    51% { transform: scaleY(1); transform-origin: bottom; }
-    100% { transform: scaleY(0); transform-origin: bottom; }
-  }
+    @keyframes gridDrift {
+      from {
+        transform: translateY(0);
+      }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+      to {
+        transform: translateY(80px);
+      }
+    }
 
-  /* MARQUEE STRIP */
-  .marquee-strip {
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-    padding: 16px 0;
-    background: rgba(200,255,0,0.02);
-  }
-  .marquee-track {
-    display: flex;
-    gap: 0;
-    animation: marquee 25s linear infinite;
-    white-space: nowrap;
-  }
-  .marquee-item {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-  .marquee-item::after {
-    content: '✦';
-    color: var(--accent);
-    font-size: 8px;
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      animation: orbFloat 12s ease-in-out infinite;
+    }
 
-  /* INTENT SECTION */
-  .intent-section {
-    padding: 160px 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .intent-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 48px; right: 48px;
-    height: 1px;
-    background: var(--border);
-  }
-  .intent-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 60px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .intent-label::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--accent);
-  }
-  .intent-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-  .intent-headline {
-    font-family: var(--font-display);
-    font-size: clamp(42px, 5vw, 78px);
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-  }
-  .intent-headline em { font-style: italic; color: var(--accent); }
-  .intent-body {
-    padding-top: 16px;
-  }
-  .intent-body p {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-  .intent-body p strong { color: var(--offwhite); font-weight: 400; }
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(200, 255, 0, 0.08), transparent 70%);
+      top: -200px;
+      right: -100px;
+      animation-delay: 0s;
+    }
 
-  /* PILLARS */
-  .pillars {
-    margin-top: 48px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .pillar {
-    display: flex;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-    gap: 24px;
-    transition: all 0.3s;
-    cursor: default;
-  }
-  .pillar:hover { padding-left: 12px; }
-  .pillar:hover .pillar-name { color: var(--accent); }
-  .pillar-num {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    width: 24px;
-  }
-  .pillar-name {
-    font-family: var(--font-ui);
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    flex: 1;
-  }
-  .pillar-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(200, 255, 0, 0.05), transparent 70%);
+      bottom: 100px;
+      left: -100px;
+      animation-delay: -6s;
+    }
 
-  /* FOUNDERS SECTION */
-  .founders-section {
-    padding: 160px 48px;
-    position: relative;
-  }
-  .founders-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 48px; right: 48px;
-    height: 1px;
-    background: var(--border);
-  }
-  .founders-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin-top: 80px;
-  }
-  .founder-card {
-    background: rgba(240,237,230,0.02);
-    border: 1px solid var(--border);
-    padding: 48px 40px;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.4s;
-  }
-  .founder-card:hover { background: rgba(200,255,0,0.03); }
-  .founder-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .founder-card:hover::before { transform: scaleX(1); }
-  .founder-avatar {
-    width: 100%;
-    aspect-ratio: 1/1;
-    border-radius: 4px;
-    margin-bottom: 28px;
-    overflow: hidden;
-    border: 1px solid rgba(200,255,0,0.12);
-    position: relative;
-  }
-  .founder-avatar svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-  .founder-name {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 400;
-    margin-bottom: 8px;
-  }
-  .founder-role {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-  }
-  .founder-bio {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    line-height: 1.9;
-    color: var(--muted);
-  }
+    @keyframes orbFloat {
 
-  /* SERVICES STRIP */
-  .services-section {
-    padding: 160px 48px;
-    position: relative;
-  }
-  .services-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 48px; right: 48px;
-    height: 1px;
-    background: var(--border);
-  }
-  .services-list {
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-  }
-  .service-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    cursor: default;
-  }
-  .service-item::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(200,255,0,0.02);
-    transform: translateX(-100%);
-    transition: transform 0.4s ease;
-  }
-  .service-item:hover::before { transform: translateX(0); }
-  .service-item:hover .service-name { letter-spacing: 0.03em; }
-  .service-name {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 4vw, 60px);
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    transition: letter-spacing 0.3s;
-    position: relative;
-  }
-  .service-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 6px;
-    position: relative;
-  }
-  .service-tag {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .service-arrow {
-    font-size: 20px;
-    color: var(--accent);
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s;
-  }
-  .service-item:hover .service-arrow { opacity: 1; transform: translateX(0); }
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
 
-  /* CONTACT SECTION */
-  .contact-section {
-    padding: 160px 48px;
-    position: relative;
-  }
-  .contact-section::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 48px; right: 48px;
-    height: 1px;
-    background: var(--border);
-  }
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .contact-headline {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 6vw, 96px);
-    font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-  }
-  .contact-headline em { font-style: italic; color: var(--accent); }
-  .contact-form { display: flex; flex-direction: column; gap: 24px; }
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .form-field label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .form-field input,
-  .form-field textarea {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 12px 0;
-    color: var(--offwhite);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.3s;
-    resize: none;
-  }
-  .form-field input:focus,
-  .form-field textarea:focus { border-color: var(--accent); }
-  .form-field textarea { height: 80px; }
-  .btn-submit {
-    align-self: flex-start;
-    background: var(--accent);
-    color: var(--black);
-    border: none;
-    padding: 16px 40px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    cursor: none;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-submit::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--offwhite);
-    transform: translateX(-100%);
-    transition: transform 0.3s;
-  }
-  .btn-submit:hover::after { transform: translateX(0); }
-  .btn-submit span { position: relative; z-index: 1; }
+      50% {
+        transform: translateY(-40px) scale(1.05);
+      }
+    }
 
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 40px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-logo {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-  }
-  .footer-logo span { color: var(--accent); }
-  .footer-copy {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-  .footer-links a {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .footer-links a:hover { color: var(--accent); }
+    /* INTENT word large */
+    .intent-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(50px, 8vw, 150px);
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(200, 255, 0, 0.25);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      animation: intentPulse 8s ease-in-out infinite;
+    }
 
-  /* ═══════════════════════════════════
+    .intent-word-inner {
+      display: inline-block;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    @keyframes intentPulse {
+
+      0%,
+      100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 8vw, 130px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 1s 0.5s forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+    }
+
+    .hero-desc {
+      max-width: 380px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .hero-scroll {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MARQUEE STRIP */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 16px 0;
+      background: rgba(200, 255, 0, 0.02);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .marquee-item::after {
+      content: '✦';
+      color: var(--accent);
+      font-size: 8px;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* INTENT SECTION */
+    .intent-section {
+      padding: 160px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intent-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .intent-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .intent-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .intent-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .intent-headline {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5vw, 78px);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .intent-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .intent-body {
+      padding-top: 16px;
+    }
+
+    .intent-body p {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .intent-body p strong {
+      color: var(--offwhite);
+      font-weight: 400;
+    }
+
+    /* PILLARS */
+    .pillars {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pillar {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      gap: 24px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .pillar:hover {
+      padding-left: 12px;
+    }
+
+    .pillar:hover .pillar-name {
+      color: var(--accent);
+    }
+
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      width: 24px;
+    }
+
+    .pillar-name {
+      font-family: var(--font-ui);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      flex: 1;
+    }
+
+    .pillar-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* FOUNDERS SECTION */
+    .founders-section {
+      padding: 160px 48px;
+      position: relative;
+    }
+
+    .founders-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .founders-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 80px;
+    }
+
+    .founder-card {
+      background: rgba(240, 237, 230, 0.02);
+      border: 1px solid var(--border);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+    }
+
+    .founder-card:hover {
+      background: rgba(200, 255, 0, 0.03);
+    }
+
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+
+    .founder-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .founder-avatar {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(200, 255, 0, 0.12);
+      position: relative;
+    }
+
+    .founder-avatar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .founder-name {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .founder-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .founder-bio {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--muted);
+    }
+
+    /* SERVICES STRIP */
+    .services-section {
+      padding: 160px 48px;
+      position: relative;
+    }
+
+    .services-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .services-list {
+      margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(200, 255, 0, 0.02);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .service-item:hover::before {
+      transform: translateX(0);
+    }
+
+    .service-item:hover .service-name {
+      letter-spacing: 0.03em;
+    }
+
+    .service-name {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 60px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      transition: letter-spacing 0.3s;
+      position: relative;
+    }
+
+    .service-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      position: relative;
+    }
+
+    .service-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .service-arrow {
+      font-size: 20px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s;
+    }
+
+    .service-item:hover .service-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* CONTACT SECTION */
+    .contact-section {
+      padding: 160px 48px;
+      position: relative;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 48px;
+      right: 48px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-headline {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 96px);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-field label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+      color: var(--offwhite);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+      resize: none;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .form-field textarea {
+      height: 80px;
+    }
+
+    .btn-submit {
+      align-self: flex-start;
+      background: var(--accent);
+      color: var(--black);
+      border: none;
+      padding: 16px 40px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--offwhite);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+
+    .btn-submit:hover::after {
+      transform: translateX(0);
+    }
+
+    .btn-submit span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-logo span {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ═══════════════════════════════════
      WORKS PAGE
   ═══════════════════════════════════ */
-  #works { position: relative; }
+    #works {
+      position: relative;
+    }
 
-  .works-hero {
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .works-hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,255,0,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,255,0,0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .works-title {
-    font-family: var(--font-display);
-    font-size: clamp(72px, 12vw, 180px);
-    font-weight: 300;
-    letter-spacing: -0.03em;
-    line-height: 0.9;
-    position: relative;
-  }
-  .works-title em { font-style: italic; color: var(--accent); }
-  .works-subtitle {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 32px;
-    position: relative;
-  }
+    .works-hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  /* FILTER BAR */
-  .filter-bar {
-    padding: 32px 48px;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-  .filter-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-right: 16px;
-  }
-  .filter-btn {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: transparent;
-    border: 1px solid var(--border);
-    padding: 8px 20px;
-    cursor: none;
-    transition: all 0.2s;
-  }
-  .filter-btn:hover,
-  .filter-btn.active {
-    background: var(--accent);
-    color: var(--black);
-    border-color: var(--accent);
-  }
+    .works-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200, 255, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 255, 0, 0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
 
-  /* WORKS GRID */
-  .works-grid {
-    padding: 80px 48px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2px;
-  }
+    .works-title {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 12vw, 180px);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 0.9;
+      position: relative;
+    }
 
-  .work-card {
-    position: relative;
-    overflow: hidden;
-    background: rgba(240,237,230,0.02);
-    border: 1px solid var(--border);
-    cursor: none;
-    transition: transform 0.4s ease;
-  }
-  .work-card:hover { z-index: 2; }
+    .works-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
 
-  /* Layout variation */
-  .work-card.large { grid-column: span 8; }
-  .work-card.small { grid-column: span 4; }
-  .work-card.medium { grid-column: span 6; }
-  .work-card.wide { grid-column: span 12; }
+    .works-subtitle {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 32px;
+      position: relative;
+    }
 
-  .work-card-img {
-    width: 100%;
-    aspect-ratio: 16/10;
-    position: relative;
-    overflow: hidden;
-  }
-  .work-card.small .work-card-img { aspect-ratio: 4/5; }
-  .work-card.wide .work-card-img { aspect-ratio: 21/8; }
+    /* FILTER BAR */
+    .filter-bar {
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
 
-  /* Generative placeholder backgrounds */
-  .work-card-img .img-bg {
-    width: 100%; height: 100%;
-    transition: transform 0.6s ease;
-  }
-  .work-card:hover .img-bg { transform: scale(1.05); }
+    .filter-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 16px;
+    }
 
-  .work-card-info {
-    padding: 28px 32px;
-  }
-  .work-card-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  .work-tag {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .work-year {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    color: var(--muted);
-  }
-  .work-title {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 300;
-    margin-bottom: 8px;
-  }
-  .work-desc {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    line-height: 1.8;
-    color: var(--muted);
-  }
-  .work-hover-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(200,255,0,0.06);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-  .work-card:hover .work-hover-overlay { opacity: 1; }
-  .work-cta {
-    position: absolute;
-    bottom: 24px; right: 24px;
-    width: 48px; height: 48px;
-    background: var(--accent);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; color: var(--black);
-    transform: scale(0) rotate(-45deg);
-    transition: all 0.3s;
-    border-radius: 50%;
-  }
-  .work-card:hover .work-cta { transform: scale(1) rotate(0deg); }
+    .filter-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      cursor: none;
+      transition: all 0.2s;
+    }
 
-  /* PARALLAX */
-  .parallax-layer {
-    will-change: transform;
-  }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      color: var(--black);
+      border-color: var(--accent);
+    }
 
-  /* ═══════════════════════════════════
+    /* WORKS GRID */
+    .works-grid {
+      padding: 80px 48px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 2px;
+    }
+
+    .work-card {
+      position: relative;
+      overflow: hidden;
+      background: rgba(240, 237, 230, 0.02);
+      border: 1px solid var(--border);
+      cursor: none;
+      transition: transform 0.4s ease;
+    }
+
+    .work-card:hover {
+      z-index: 2;
+    }
+
+    /* Layout variation */
+    .work-card.large {
+      grid-column: span 8;
+    }
+
+    .work-card.small {
+      grid-column: span 4;
+    }
+
+    .work-card.medium {
+      grid-column: span 6;
+    }
+
+    .work-card.wide {
+      grid-column: span 12;
+    }
+
+    .work-card-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-card.small .work-card-img {
+      aspect-ratio: 4/5;
+    }
+
+    .work-card.wide .work-card-img {
+      aspect-ratio: 21/8;
+    }
+
+    /* Generative placeholder backgrounds */
+    .work-card-img .img-bg {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease;
+    }
+
+    .work-card:hover .img-bg {
+      transform: scale(1.05);
+    }
+
+    .work-card-info {
+      padding: 28px 32px;
+    }
+
+    .work-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .work-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .work-year {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .work-title {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 300;
+      margin-bottom: 8px;
+    }
+
+    .work-desc {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+
+    .work-hover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(200, 255, 0, 0.06);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .work-card:hover .work-hover-overlay {
+      opacity: 1;
+    }
+
+    .work-cta {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--black);
+      transform: scale(0) rotate(-45deg);
+      transition: all 0.3s;
+      border-radius: 50%;
+    }
+
+    .work-card:hover .work-cta {
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* PARALLAX */
+    .parallax-layer {
+      will-change: transform;
+    }
+
+    /* ═══════════════════════════════════
      SCROLL ANIMATIONS
   ═══════════════════════════════════ */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
 
-  /* SECTION LABELS */
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 60px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .section-label::before {
-    content: '';
-    width: 32px; height: 1px;
-    background: var(--accent);
-  }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  /* NOISE OVERLAY */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.4;
-  }
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
 
-  /* ABOUT PAGE */
-  #about { position: relative; }
-  .about-hero {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 140px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .about-hero-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 80% 50%, rgba(200,255,0,0.05), transparent 60%);
-  }
-  .about-headline {
-    font-family: var(--font-display);
-    font-size: clamp(60px, 10vw, 150px);
-    font-weight: 300;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    position: relative;
-  }
-  .about-headline em { font-style: italic; color: var(--accent); }
-  .about-content {
-    padding: 100px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-  }
-  .about-text p {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 2;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-  .about-text p strong { color: var(--offwhite); font-weight: 400; }
-  .about-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    padding-top: 8px;
-  }
-  .stat {
-    display: flex;
-    flex-direction: column;
-    border-left: 2px solid var(--accent);
-    padding-left: 24px;
-    gap: 8px;
-  }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--accent);
-  }
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
+    .reveal-delay-2 {
+      transition-delay: 0.2s;
+    }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 20px 24px; }
-    .hero, .intent-section, .founders-section, .services-section, .contact-section { padding-left: 24px; padding-right: 24px; }
-    .intent-main, .contact-inner, .about-content { grid-template-columns: 1fr; gap: 48px; }
-    .founders-grid { grid-template-columns: 1fr; }
-    .works-grid { padding: 40px 24px; }
-    .work-card.large, .work-card.small, .work-card.medium { grid-column: span 12; }
-    footer { flex-direction: column; gap: 24px; text-align: center; }
-    .nav-links { display: none; }
-    .filter-bar { flex-wrap: wrap; padding: 20px 24px; }
-  }
-</style>
+    .reveal-delay-3 {
+      transition-delay: 0.3s;
+    }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* NOISE OVERLAY */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.4;
+    }
+
+    /* ABOUT PAGE */
+    #about {
+      position: relative;
+    }
+
+    .about-hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 140px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(200, 255, 0, 0.05), transparent 60%);
+    }
+
+    .about-headline {
+      font-family: var(--font-display);
+      font-size: clamp(60px, 10vw, 150px);
+      font-weight: 300;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+
+    .about-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-content {
+      padding: 100px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .about-text p {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .about-text p strong {
+      color: var(--offwhite);
+      font-weight: 400;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding-top: 8px;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid var(--accent);
+      padding-left: 24px;
+      gap: 8px;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px 24px;
+      }
+
+      .hero,
+      .intent-section,
+      .founders-section,
+      .services-section,
+      .contact-section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .intent-main,
+      .contact-inner,
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .founders-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .works-grid {
+        padding: 40px 24px;
+      }
+
+      .work-card.large,
+      .work-card.small,
+      .work-card.medium {
+        grid-column: span 12;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .filter-bar {
+        flex-wrap: wrap;
+        padding: 20px 24px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <canvas id="particles"></canvas>
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo" onclick="showPage('home')">Studio3<span>.design</span></a>
-  <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home')">Home</a></li>
-    <li><a href="#" onclick="showPage('works')">Works</a></li>
-    <li><a href="#" onclick="showPage('about')">About</a></li>
-    <li><a href="#" onclick="showPage('home'); setTimeout(()=>document.querySelector('.contact-section').scrollIntoView({behavior:'smooth'}),100)">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- ═══════════════ HOME PAGE ═══════════════ -->
-<div id="home" class="page active">
-
-  <section class="hero">
-    <div class="hero-bg">
-      <div class="hero-bg-grid"></div>
-      <div class="hero-orb orb-1"></div>
-      <div class="hero-orb orb-2"></div>
-    </div>
-    <div class="intent-bg-text parallax-layer" data-speed="0.3">INTENT</div>
-
-    <div class="hero-eyebrow">Studio3.design — Est. 2024</div>
-    <h1 class="hero-title">
-      Design<br>
-      driven by<br>
-      <em>intent.</em>
-    </h1>
-    <div class="hero-bottom">
-      <p class="hero-desc">Three designers. One obsession.<br>We build experiences that begin with purpose and end with meaning.</p>
-      <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        <span>Scroll</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track">
-      <div class="marquee-item">Intent-Led Design</div>
-      <div class="marquee-item">UI/UX Systems</div>
-      <div class="marquee-item">Agentic AI</div>
-      <div class="marquee-item">Research</div>
-      <div class="marquee-item">Intent-Led Design</div>
-      <div class="marquee-item">UI/UX Systems</div>
-      <div class="marquee-item">Agentic AI</div>
-      <div class="marquee-item">Research</div>
-      <div class="marquee-item">Intent-Led Design</div>
-      <div class="marquee-item">UI/UX Systems</div>
-      <div class="marquee-item">Agentic AI</div>
-      <div class="marquee-item">Research</div>
-      <div class="marquee-item">Intent-Led Design</div>
-      <div class="marquee-item">UI/UX Systems</div>
-      <div class="marquee-item">Agentic AI</div>
-      <div class="marquee-item">Research</div>
-    </div>
-  </div>
-
-  <!-- INTENT SECTION -->
-  <section class="intent-section">
-    <div class="intent-label reveal">Our North Star</div>
-    <div class="intent-main">
-      <h2 class="intent-headline reveal">
-        Every pixel<br>
-        has a<br>
-        <em>reason</em><br>
-        to exist.
-      </h2>
-      <div class="intent-body reveal reveal-delay-2">
-        <p>Intent is not a feature — it's a <strong>philosophy</strong>. We believe that every design decision should trace back to a human need, a behavioural truth, or a strategic goal.</p>
-        <p>We don't design surfaces. We design <strong>systems of meaning</strong> — where every interaction, every transition, every word has been placed with deliberate purpose.</p>
-        <p>Intent-led experiences are <strong>felt before they're understood</strong>. They guide without instructing, delight without distracting, and resolve without effort.</p>
-
-        <div class="pillars">
-          <div class="pillar reveal reveal-delay-1">
-            <span class="pillar-num">01</span>
-            <span class="pillar-name">UI/UX Design</span>
-            <span class="pillar-tag">Systems & Interfaces</span>
-          </div>
-          <div class="pillar reveal reveal-delay-2">
-            <span class="pillar-num">02</span>
-            <span class="pillar-name">Design Research</span>
-            <span class="pillar-tag">Insight & Behaviour</span>
-          </div>
-          <div class="pillar reveal reveal-delay-3">
-            <span class="pillar-num">03</span>
-            <span class="pillar-name">Agentic AI</span>
-            <span class="pillar-tag">Intelligent Automation</span>
-          </div>
-          <div class="pillar reveal reveal-delay-1" style="border-bottom:none;">
-            <span class="pillar-num">04</span>
-            <span class="pillar-name" style="color: var(--accent);">Intent-Led Experiences</span>
-            <span class="pillar-tag">Our Core</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOUNDERS -->
-  <section class="founders-section">
-    <div class="section-label reveal">The Three</div>
-    <div class="founders-grid">
-      <div class="founder-card reveal reveal-delay-1">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="680" fill="#0f1410"/><line x1="0" y1="170" x2="680" y2="170" stroke="rgba(200,255,0,0.04)" stroke-width="1"/><line x1="0" y1="340" x2="680" y2="340" stroke="rgba(200,255,0,0.04)" stroke-width="1"/><line x1="170" y1="0" x2="170" y2="680" stroke="rgba(200,255,0,0.04)" stroke-width="1"/><line x1="340" y1="0" x2="340" y2="680" stroke="rgba(200,255,0,0.04)" stroke-width="1"/><line x1="510" y1="0" x2="510" y2="680" stroke="rgba(200,255,0,0.04)" stroke-width="1"/><polygon points="340,100 470,290 340,480 210,290" fill="none" stroke="rgba(200,255,0,0.07)" stroke-width="1.5"/><ellipse cx="340" cy="760" rx="230" ry="170" fill="#1c2b1a"/><rect x="300" y="490" width="80" height="80" rx="6" fill="#7a5538"/><ellipse cx="340" cy="360" rx="130" ry="150" fill="#8B6347"/><ellipse cx="213" cy="370" rx="18" ry="26" fill="#7a5538"/><ellipse cx="467" cy="370" rx="18" ry="26" fill="#7a5538"/><ellipse cx="340" cy="270" rx="132" ry="90" fill="#2a1a08"/><ellipse cx="340" cy="240" rx="110" ry="70" fill="#3a2510"/><path d="M230,270 Q260,230 340,218 Q420,230 450,270" fill="none" stroke="#4a3018" stroke-width="3"/><ellipse cx="340" cy="218" rx="20" ry="14" fill="#c8ff00" opacity="0.7"/><ellipse cx="300" cy="355" rx="35" ry="26" fill="#6B4A32"/><ellipse cx="380" cy="355" rx="35" ry="26" fill="#6B4A32"/><rect x="265" y="336" width="64" height="40" rx="8" fill="rgba(200,255,0,0.06)"/><rect x="265" y="336" width="64" height="40" rx="8" fill="none" stroke="#c8ff00" stroke-width="2"/><rect x="348" y="336" width="64" height="40" rx="8" fill="rgba(200,255,0,0.06)"/><rect x="348" y="336" width="64" height="40" rx="8" fill="none" stroke="#c8ff00" stroke-width="2"/><line x1="329" y1="354" x2="348" y2="354" stroke="#c8ff00" stroke-width="2"/><line x1="265" y1="354" x2="218" y2="362" stroke="#c8ff00" stroke-width="2"/><line x1="412" y1="354" x2="462" y2="362" stroke="#c8ff00" stroke-width="2"/><ellipse cx="297" cy="356" rx="10" ry="9" fill="#1a0e08"/><ellipse cx="377" cy="356" rx="10" ry="9" fill="#1a0e08"/><circle cx="299" cy="354" r="3" fill="white"/><circle cx="379" cy="354" r="3" fill="white"/><path d="M268,330 Q297,322 328,326" fill="none" stroke="#2a1808" stroke-width="4" stroke-linecap="round"/><path d="M350,326 Q380,320 412,330" fill="none" stroke="#2a1808" stroke-width="4" stroke-linecap="round"/><path d="M335,370 Q330,400 315,412 Q330,418 340,416 Q350,418 365,412 Q350,400 345,370" fill="#7a5538"/><path d="M308,440 Q325,452 340,454 Q355,452 372,440" fill="none" stroke="#5a3820" stroke-width="3" stroke-linecap="round"/><ellipse cx="340" cy="460" rx="65" ry="30" fill="#2a1808" opacity="0.5"/><circle cx="80" cy="100" r="2" fill="#c8ff00" opacity="0.4"/><circle cx="95" cy="130" r="1.5" fill="#c8ff00" opacity="0.3"/><circle cx="120" cy="90" r="3" fill="#c8ff00" opacity="0.2"/><circle cx="600" cy="120" r="2" fill="#c8ff00" opacity="0.4"/><circle cx="580" cy="150" r="1.5" fill="#c8ff00" opacity="0.3"/><line x1="80" y1="100" x2="95" y2="130" stroke="rgba(200,255,0,0.2)" stroke-width="0.5"/><line x1="95" y1="130" x2="120" y2="90" stroke="rgba(200,255,0,0.2)" stroke-width="0.5"/><line x1="600" y1="120" x2="580" y2="150" stroke="rgba(200,255,0,0.2)" stroke-width="0.5"/></svg>
-        </div>
-        <div class="founder-name">Kuljit Kondral</div>
-        <div class="founder-role">Research Director</div>
-        <p class="founder-bio">The oracle of insight. With 14 years decoding human behaviour, Kuljit lives and breathes the Double Diamond — diverging into chaos, converging into clarity. He doesn't just read data, he hears it. Our resident futures thinker, he maps where the world is going before anyone else has thought to look.</p>
-      </div>
-      <div class="founder-card reveal reveal-delay-2">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="680" fill="#0a0c14"/><line x1="60" y1="60" x2="60" y2="200" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="60" y1="200" x2="160" y2="200" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="160" y1="200" x2="160" y2="120" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><circle cx="60" cy="60" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><circle cx="160" cy="120" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><line x1="620" y1="60" x2="620" y2="200" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="620" y1="200" x2="520" y2="200" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="520" y1="200" x2="520" y2="120" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><circle cx="620" cy="60" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><circle cx="520" cy="120" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><circle cx="340" cy="330" r="180" fill="none" stroke="rgba(200,255,0,0.04)" stroke-width="40"/><ellipse cx="340" cy="760" rx="240" ry="180" fill="#0d1830"/><rect x="305" y="492" width="70" height="75" rx="4" fill="#b08858"/><ellipse cx="340" cy="355" rx="128" ry="148" fill="#c49a6c"/><ellipse cx="215" cy="365" rx="17" ry="24" fill="#b08858"/><ellipse cx="465" cy="365" rx="17" ry="24" fill="#b08858"/><ellipse cx="340" cy="230" rx="130" ry="85" fill="#1a1520"/><path d="M212,280 Q220,220 270,200 Q310,188 340,186 Q370,188 410,200 Q460,220 468,280" fill="#1a1520"/><path d="M240,210 Q290,196 340,194 Q390,196 440,210" fill="none" stroke="#2a2030" stroke-width="2"/><ellipse cx="340" cy="460" rx="70" ry="35" fill="rgba(26,15,8,0.6)"/><ellipse cx="298" cy="352" rx="34" ry="25" fill="#b08858"/><ellipse cx="382" cy="352" rx="34" ry="25" fill="#b08858"/><ellipse cx="298" cy="354" rx="13" ry="11" fill="#1e1612"/><ellipse cx="382" cy="354" rx="13" ry="11" fill="#1e1612"/><circle cx="302" cy="351" r="4" fill="white"/><circle cx="386" cy="351" r="4" fill="white"/><path d="M265,328 Q298,318 331,323" fill="none" stroke="#1a1520" stroke-width="5" stroke-linecap="round"/><path d="M350,323 Q383,318 415,328" fill="none" stroke="#1a1520" stroke-width="5" stroke-linecap="round"/><path d="M328,326 Q340,322 352,326" fill="none" stroke="#1a1520" stroke-width="2.5" stroke-linecap="round"/><path d="M334,368 Q326,396 312,410 Q328,417 340,415 Q352,417 368,410 Q354,396 346,368" fill="#a07848"/><path d="M308,442 Q330,456 355,452 Q368,448 376,440" fill="none" stroke="#7a5030" stroke-width="3" stroke-linecap="round"/><rect x="100" y="580" width="90" height="56" rx="4" fill="rgba(200,255,0,0.08)" stroke="rgba(200,255,0,0.25)" stroke-width="1"/><text x="145" y="605" text-anchor="middle" font-family="monospace" font-size="9" fill="#c8ff00" opacity="0.8">AI_CORE</text><text x="145" y="622" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(200,255,0,0.5)">v2.0 ▓▓▓▓░</text></svg>
-        </div>
-        <div class="founder-name">Tolga Inam</div>
-        <div class="founder-role">Head of Tech & UX</div>
-        <p class="founder-bio">Two decades of building things that actually work — then making them beautiful. Tolga is our Dungeon Master: he architects the dungeons (systems), writes the rules (logic), and somehow always has a clever spell ready when the demo breaks. His command of AI and web tech is, frankly, unfair.</p>
-      </div>
-      <div class="founder-card reveal reveal-delay-3">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 680" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="680" fill="#0c0a10"/><rect x="50" y="50" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="62" y="50" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="74" y="50" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="50" y="62" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="62" y="62" width="10" height="10" fill="rgba(200,255,0,0.3)"/><rect x="74" y="62" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="50" y="74" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="62" y="74" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="74" y="74" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="616" y="50" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="628" y="50" width="10" height="10" fill="rgba(200,255,0,0.3)"/><rect x="616" y="62" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="628" y="62" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="616" y="74" width="10" height="10" fill="rgba(200,255,0,0.3)"/><rect x="628" y="74" width="10" height="10" fill="rgba(200,255,0,0.15)"/><line x1="0" y1="400" x2="200" y2="180" stroke="rgba(200,255,0,0.05)" stroke-width="1"/><line x1="680" y1="400" x2="480" y2="180" stroke="rgba(200,255,0,0.05)" stroke-width="1"/><circle cx="340" cy="330" r="170" fill="rgba(200,255,0,0.03)"/><ellipse cx="340" cy="760" rx="240" ry="175" fill="#1a0d2e"/><rect x="308" y="490" width="64" height="72" rx="4" fill="#c09060"/><ellipse cx="340" cy="352" rx="126" ry="145" fill="#d4a574"/><ellipse cx="216" cy="362" rx="17" ry="23" fill="#b8865a"/><ellipse cx="464" cy="362" rx="17" ry="23" fill="#b8865a"/><ellipse cx="340" cy="228" rx="128" ry="82" fill="#0a0810"/><path d="M214,278 Q218,215 265,196 Q302,182 340,180 Q378,182 415,196 Q462,215 466,278" fill="#0a0810"/><path d="M280,182 Q320,168 360,170 Q400,172 430,185" fill="none" stroke="#1a1228" stroke-width="3"/><path d="M355,170 Q370,165 385,170" fill="none" stroke="rgba(200,255,0,0.25)" stroke-width="2"/><ellipse cx="299" cy="348" rx="33" ry="24" fill="#b8865a"/><ellipse cx="381" cy="348" rx="33" ry="24" fill="#b8865a"/><ellipse cx="299" cy="350" rx="12" ry="10" fill="#1a1220"/><ellipse cx="381" cy="350" rx="12" ry="10" fill="#1a1220"/><circle cx="303" cy="347" r="3.5" fill="white"/><circle cx="385" cy="347" r="3.5" fill="white"/><path d="M268,322 Q299,311 330,316" fill="none" stroke="#0a0810" stroke-width="4.5" stroke-linecap="round"/><path d="M350,316 Q381,311 412,322" fill="none" stroke="#0a0810" stroke-width="4.5" stroke-linecap="round"/><path d="M335,365 Q327,393 313,406 Q328,413 340,411 Q352,413 367,406 Q353,393 345,365" fill="#b07848"/><path d="M305,438 Q325,455 340,458 Q355,455 375,438" fill="none" stroke="#8a5530" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="340" cy="455" rx="68" ry="28" fill="rgba(10,8,16,0.45)"/><rect x="490" y="110" width="52" height="8" rx="4" fill="#2a1a3a"/><rect x="526" y="104" width="20" height="20" rx="3" fill="rgba(200,255,0,0.15)" stroke="rgba(200,255,0,0.4)" stroke-width="1"/><circle cx="536" cy="114" r="4" fill="#c8ff00" opacity="0.6"/><path d="M490,140 Q500,148 515,145 Q528,142 535,150" fill="none" stroke="rgba(200,255,0,0.35)" stroke-width="2.5" stroke-linecap="round"/></svg>
-        </div>
-        <div class="founder-name">Baris Ertufan</div>
-        <div class="founder-role">Visual Director</div>
-        <p class="founder-bio">What happens when a gamer becomes a designer? You get someone who thinks in levels, not pages — who treats every screen as a world to be rendered and every interaction as a reward loop. With 14 years of digital UI craft, Baris builds animated bridges between raw vision and pixel-perfect reality.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="services-section">
-    <div class="section-label reveal">What We Do</div>
-    <div class="services-list">
-      <div class="service-item reveal">
-        <div class="service-name">Intent Mapping</div>
-        <div class="service-meta">
-          <span class="service-tag">Core Offering</span>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-1">
-        <div class="service-name">UI/UX Systems</div>
-        <div class="service-meta">
-          <span class="service-tag">Design</span>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-2">
-        <div class="service-name">AI Experience Design</div>
-        <div class="service-meta">
-          <span class="service-tag">Emerging Tech</span>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
-      <div class="service-item reveal reveal-delay-3">
-        <div class="service-name">Behavioural Research</div>
-        <div class="service-meta">
-          <span class="service-tag">Research</span>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
-      <div class="service-item reveal">
-        <div class="service-name">Agentic Interfaces</div>
-        <div class="service-meta">
-          <span class="service-tag">Frontier</span>
-          <span class="service-arrow">→</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact-section">
-    <div class="contact-inner">
-      <div>
-        <div class="section-label reveal">Let's Talk</div>
-        <h2 class="contact-headline reveal">Start with<br><em>intent.</em></h2>
-      </div>
-      <form class="contact-form reveal reveal-delay-2" onsubmit="return false;">
-        <div class="form-field">
-          <label>Your Name</label>
-          <input type="text" placeholder="Full name">
-        </div>
-        <div class="form-field">
-          <label>Email</label>
-          <input type="email" placeholder="hello@example.com">
-        </div>
-        <div class="form-field">
-          <label>What are you building?</label>
-          <textarea placeholder="Tell us about your project and its intent..."></textarea>
-        </div>
-        <button class="btn-submit"><span>Send Message →</span></button>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-logo">Studio3<span>.design</span></div>
-    <ul class="footer-links">
-      <li><a href="#" onclick="showPage('works')">Works</a></li>
-      <li><a href="#" onclick="showPage('about')">About</a></li>
-      <li><a href="#">Instagram</a></li>
-      <li><a href="#">LinkedIn</a></li>
-    </ul>
-    <span class="footer-copy">© 2024 Studio3.design</span>
-  </footer>
-</div>
-
-<!-- ═══════════════ WORKS PAGE ═══════════════ -->
-<div id="works" class="page">
-
-  <section class="works-hero">
-    <div class="works-hero-bg"></div>
-    <div class="works-title parallax-layer" data-speed="0.2">
-      Selected<br><em>Works</em>
-    </div>
-    <p class="works-subtitle">Intent in action — twelve projects, one obsession</p>
-  </section>
-
-  <div class="filter-bar">
-    <span class="filter-label">Filter</span>
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">UI/UX</button>
-    <button class="filter-btn">Research</button>
-    <button class="filter-btn">AI</button>
-    <button class="filter-btn">Intent</button>
-  </div>
-
-  <div class="works-grid">
-
-    <!-- Project 1 — Large -->
-    <div class="work-card large reveal">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="800" height="500" fill="#0f0f0d"/>
-          <rect x="0" y="0" width="800" height="500" fill="url(#g1)"/>
-          <defs>
-            <radialGradient id="g1" cx="30%" cy="60%" r="70%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="0" y1="400" x2="800" y2="400" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="200" y1="0" x2="200" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="400" y1="0" x2="400" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <line x1="600" y1="0" x2="600" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <circle cx="160" cy="280" r="120" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1"/>
-          <circle cx="160" cy="280" r="80" fill="none" stroke="rgba(200,255,0,0.06)" stroke-width="1"/>
-          <circle cx="160" cy="280" r="40" fill="rgba(200,255,0,0.1)"/>
-          <text x="400" y="270" font-family="serif" font-size="72" fill="rgba(240,237,230,0.06)" text-anchor="middle" font-style="italic">Meridian</text>
-          <rect x="300" y="320" width="200" height="2" fill="rgba(200,255,0,0.3)"/>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">UI/UX · Intent</span>
-          <span class="work-year">2024</span>
-        </div>
-        <h3 class="work-title">Meridian Platform</h3>
-        <p class="work-desc">Enterprise dashboard redesign focused on intent-mapping. Users accomplish goals 40% faster with zero onboarding.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 2 — Small -->
-    <div class="work-card small reveal reveal-delay-1">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="500" fill="#0d0f0a"/>
-          <defs>
-            <radialGradient id="g2" cx="70%" cy="30%" r="60%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.2"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="400" height="500" fill="url(#g2)"/>
-          <rect x="60" y="80" width="280" height="340" rx="8" fill="none" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
-          <rect x="80" y="120" width="240" height="16" rx="4" fill="rgba(200,255,0,0.08)"/>
-          <rect x="80" y="148" width="180" height="8" rx="4" fill="rgba(240,237,230,0.04)"/>
-          <rect x="80" y="200" width="240" height="120" rx="6" fill="rgba(200,255,0,0.05)"/>
-          <rect x="80" y="340" width="100" height="32" rx="4" fill="rgba(200,255,0,0.15)"/>
-          <text x="200" y="465" font-family="serif" font-size="40" fill="rgba(240,237,230,0.04)" text-anchor="middle" font-style="italic">Vela</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Mobile · AI</span>
-          <span class="work-year">2024</span>
-        </div>
-        <h3 class="work-title">Vela App</h3>
-        <p class="work-desc">AI-powered task manager that learns user intent from behaviour.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 3 — Medium -->
-    <div class="work-card medium reveal reveal-delay-1">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="375" fill="#080a0a"/>
-          <defs>
-            <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <rect width="600" height="375" fill="url(#g3)"/>
-          <polygon points="300,50 520,200 300,350 80,200" fill="none" stroke="rgba(200,255,0,0.07)" stroke-width="1"/>
-          <polygon points="300,100 460,200 300,300 140,200" fill="none" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <polygon points="300,150 400,200 300,250 200,200" fill="rgba(200,255,0,0.06)"/>
-          <circle cx="300" cy="200" r="8" fill="rgba(200,255,0,0.6)"/>
-          <text x="300" y="340" font-family="serif" font-size="36" fill="rgba(240,237,230,0.05)" text-anchor="middle" font-style="italic">Kairos</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Research · Strategy</span>
-          <span class="work-year">2024</span>
-        </div>
-        <h3 class="work-title">Kairos Research System</h3>
-        <p class="work-desc">A continuous research platform turning user signals into strategic design decisions in real time.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 4 — Medium -->
-    <div class="work-card medium reveal reveal-delay-2">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="375" fill="#0a0a08"/>
-          <defs>
-            <radialGradient id="g4" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.12"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="600" height="375" fill="url(#g4)"/>
-          <circle cx="300" cy="187" r="140" fill="none" stroke="rgba(200,255,0,0.06)" stroke-width="1" stroke-dasharray="4 8"/>
-          <circle cx="300" cy="187" r="90" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1"/>
-          <circle cx="300" cy="187" r="40" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/>
-          <circle cx="300" cy="187" r="6" fill="rgba(200,255,0,0.8)"/>
-          <line x1="300" y1="47" x2="300" y2="327" stroke="rgba(200,255,0,0.04)" stroke-width="1"/>
-          <line x1="160" y1="187" x2="440" y2="187" stroke="rgba(200,255,0,0.04)" stroke-width="1"/>
-          <text x="300" y="360" font-family="serif" font-size="32" fill="rgba(240,237,230,0.05)" text-anchor="middle" font-style="italic">Orion</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Agentic AI · UX</span>
-          <span class="work-year">2023</span>
-        </div>
-        <h3 class="work-title">Orion Agent Interface</h3>
-        <p class="work-desc">Conversational UI for a multi-agent AI system, designed for transparency and trust.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 5 — Wide -->
-    <div class="work-card wide reveal">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="1200" height="460" fill="#070809"/>
-          <defs>
-            <linearGradient id="g5" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.12"/>
-              <stop offset="50%" stop-color="#c8ff00" stop-opacity="0.04"/>
-              <stop offset="100%" stop-color="#c8ff00" stop-opacity="0.12"/>
-            </linearGradient>
-          </defs>
-          <rect width="1200" height="460" fill="url(#g5)"/>
-          <line x1="0" y1="230" x2="1200" y2="230" stroke="rgba(200,255,0,0.06)" stroke-width="1"/>
-          <rect x="100" y="130" width="180" height="200" rx="4" fill="rgba(200,255,0,0.04)" stroke="rgba(200,255,0,0.08)" stroke-width="1"/>
-          <rect x="320" y="100" width="180" height="260" rx="4" fill="rgba(200,255,0,0.06)" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
-          <rect x="540" y="80" width="180" height="300" rx="4" fill="rgba(200,255,0,0.08)" stroke="rgba(200,255,0,0.12)" stroke-width="1"/>
-          <rect x="760" y="100" width="180" height="260" rx="4" fill="rgba(200,255,0,0.06)" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
-          <rect x="980" y="130" width="180" height="200" rx="4" fill="rgba(200,255,0,0.04)" stroke="rgba(200,255,0,0.08)" stroke-width="1"/>
-          <text x="600" y="440" font-family="serif" font-size="56" fill="rgba(240,237,230,0.04)" text-anchor="middle" font-style="italic">Threshold</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Intent · End-to-End</span>
-          <span class="work-year">2024</span>
-        </div>
-        <h3 class="work-title">Threshold — Brand & System</h3>
-        <p class="work-desc">Full brand identity, design system, and product interface for a Series B fintech. Every touchpoint mapped back to user intent archetypes.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 6 — Small -->
-    <div class="work-card small reveal reveal-delay-1">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="500" fill="#0a0a0d"/>
-          <defs>
-            <radialGradient id="g6" cx="50%" cy="70%" r="60%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.18"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="400" height="500" fill="url(#g6)"/>
-          <rect x="60" y="60" width="280" height="380" rx="20" fill="none" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
-          <rect x="80" y="160" width="240" height="180" rx="8" fill="rgba(200,255,0,0.05)"/>
-          <circle cx="200" cy="250" r="50" fill="rgba(200,255,0,0.08)" stroke="rgba(200,255,0,0.2)" stroke-width="1"/>
-          <text x="200" y="465" font-family="serif" font-size="36" fill="rgba(240,237,230,0.05)" text-anchor="middle" font-style="italic">Luma</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Mobile · Research</span>
-          <span class="work-year">2023</span>
-        </div>
-        <h3 class="work-title">Luma Health</h3>
-        <p class="work-desc">Patient-facing health app. Research-led design for complex medical intent.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 7 — Large -->
-    <div class="work-card large reveal reveal-delay-2">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="800" height="500" fill="#080a08"/>
-          <defs>
-            <radialGradient id="g7" cx="60%" cy="40%" r="65%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.13"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="800" height="500" fill="url(#g7)"/>
-          <line x1="0" y1="0" x2="800" y2="500" stroke="rgba(200,255,0,0.04)" stroke-width="1"/>
-          <line x1="800" y1="0" x2="0" y2="500" stroke="rgba(200,255,0,0.04)" stroke-width="1"/>
-          <circle cx="400" cy="250" r="200" fill="none" stroke="rgba(200,255,0,0.05)" stroke-width="1"/>
-          <circle cx="400" cy="250" r="150" fill="none" stroke="rgba(200,255,0,0.04)" stroke-width="1"/>
-          <circle cx="400" cy="250" r="100" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1"/>
-          <circle cx="400" cy="250" r="50" fill="rgba(200,255,0,0.06)"/>
-          <text x="400" y="470" font-family="serif" font-size="56" fill="rgba(240,237,230,0.05)" text-anchor="middle" font-style="italic">Atlas</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Agentic AI · Intent</span>
-          <span class="work-year">2024</span>
-        </div>
-        <h3 class="work-title">Atlas Navigation System</h3>
-        <p class="work-desc">Wayfinding interface for a complex multi-modal transit network. Agentic AI infers destination intent before the user finishes typing.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 8 — Medium -->
-    <div class="work-card medium reveal reveal-delay-1">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="375" fill="#09090b"/>
-          <defs>
-            <linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.08"/>
-              <stop offset="100%" stop-color="#c8ff00" stop-opacity="0.15"/>
-            </linearGradient>
-          </defs>
-          <rect width="600" height="375" fill="url(#g8)"/>
-          <rect x="40" y="40" width="200" height="140" rx="6" fill="rgba(200,255,0,0.05)" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
-          <rect x="40" y="200" width="200" height="140" rx="6" fill="rgba(200,255,0,0.03)" stroke="rgba(200,255,0,0.07)" stroke-width="1"/>
-          <rect x="260" y="40" width="300" height="300" rx="6" fill="rgba(200,255,0,0.07)" stroke="rgba(200,255,0,0.12)" stroke-width="1"/>
-          <circle cx="410" cy="190" r="60" fill="rgba(200,255,0,0.08)"/>
-          <text x="300" y="360" font-family="serif" font-size="30" fill="rgba(240,237,230,0.04)" text-anchor="middle" font-style="italic">Forma</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Design System</span>
-          <span class="work-year">2023</span>
-        </div>
-        <h3 class="work-title">Forma Design System</h3>
-        <p class="work-desc">500-component system built on intent-first principles for a Series A SaaS company.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-    <!-- Project 9 — Medium -->
-    <div class="work-card medium reveal reveal-delay-2">
-      <div class="work-card-img">
-        <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="600" height="375" fill="#0a0806"/>
-          <defs>
-            <radialGradient id="g9" cx="20%" cy="80%" r="70%">
-              <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.15"/>
-              <stop offset="100%" stop-color="#0a0a08" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="600" height="375" fill="url(#g9)"/>
-          <path d="M0,300 Q150,100 300,200 Q450,300 600,100" fill="none" stroke="rgba(200,255,0,0.1)" stroke-width="2"/>
-          <path d="M0,350 Q150,150 300,250 Q450,350 600,150" fill="none" stroke="rgba(200,255,0,0.06)" stroke-width="1"/>
-          <circle cx="300" cy="200" r="12" fill="rgba(200,255,0,0.6)"/>
-          <circle cx="150" cy="180" r="6" fill="rgba(200,255,0,0.3)"/>
-          <circle cx="450" cy="220" r="6" fill="rgba(200,255,0,0.3)"/>
-          <text x="300" y="360" font-family="serif" font-size="30" fill="rgba(240,237,230,0.04)" text-anchor="middle" font-style="italic">Pulse</text>
-        </svg>
-      </div>
-      <div class="work-card-info">
-        <div class="work-card-meta">
-          <span class="work-tag">Research · Data Viz</span>
-          <span class="work-year">2023</span>
-        </div>
-        <h3 class="work-title">Pulse Analytics</h3>
-        <p class="work-desc">Real-time user intent analytics dashboard — designed for design teams, not data scientists.</p>
-      </div>
-      <div class="work-hover-overlay"></div>
-      <div class="work-cta">→</div>
-    </div>
-
-  </div><!-- end works-grid -->
-
-  <footer>
-    <div class="footer-logo">Studio3<span>.design</span></div>
-    <ul class="footer-links">
-      <li><a href="#" onclick="showPage('home')">Home</a></li>
-      <li><a href="#" onclick="showPage('about')">About</a></li>
-      <li><a href="#">Instagram</a></li>
-    </ul>
-    <span class="footer-copy">© 2024 Studio3.design</span>
-  </footer>
-</div>
-
-<!-- ═══════════════ ABOUT PAGE ═══════════════ -->
-<div id="about" class="page">
-
-  <section class="about-hero">
-    <div class="about-hero-bg"></div>
-    <h1 class="about-headline">
-      Three minds,<br>
-      one <em>intent.</em>
-    </h1>
-  </section>
-
-  <div class="about-content">
-    <div class="about-text reveal">
-      <p>Studio3.design was founded on a belief that has guided every project since: <strong>design without intent is decoration.</strong></p>
-      <p>We are three designers who met at the intersection of craft and cognition — where the way something works is inseparable from the way it feels. We've spent our careers studying human behaviour, building AI systems, and crafting interfaces that dissolve the distance between a person and their goal.</p>
-      <p>Our practice centres on <strong>intent-led experience design</strong> — a methodology that starts not with wireframes or user stories, but with a deep excavation of what people actually want to accomplish, and why. We map the gap between stated and latent intent, then design experiences that bridge it.</p>
-      <p>We work with early-stage startups, scaling platforms, and enterprise teams who believe that <strong>the quality of the experience is the quality of the product.</strong></p>
-    </div>
-    <div class="about-stats reveal reveal-delay-2">
-      <div class="stat">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Founding Designers</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">40+</span>
-        <span class="stat-label">Projects Delivered</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">12</span>
-        <span class="stat-label">Industry Awards</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">Intent-Led</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Founders full section on About -->
-  <section class="founders-section" style="padding-top:80px;">
-    <div class="section-label reveal">The Founders</div>
-    <div class="founders-grid">
-      <div class="founder-card reveal reveal-delay-1">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="500" fill="#0f1410"/><polygon points="340,60 460,210 340,360 220,210" fill="none" stroke="rgba(200,255,0,0.07)" stroke-width="1.5"/><ellipse cx="340" cy="600" rx="230" ry="170" fill="#1c2b1a"/><rect x="300" y="360" width="80" height="80" rx="6" fill="#7a5538"/><ellipse cx="340" cy="240" rx="130" ry="150" fill="#8B6347"/><ellipse cx="213" cy="250" rx="18" ry="26" fill="#7a5538"/><ellipse cx="467" cy="250" rx="18" ry="26" fill="#7a5538"/><ellipse cx="340" cy="155" rx="132" ry="90" fill="#2a1a08"/><ellipse cx="340" cy="128" rx="110" ry="70" fill="#3a2510"/><ellipse cx="340" cy="100" rx="20" ry="14" fill="#c8ff00" opacity="0.7"/><rect x="265" y="218" width="64" height="40" rx="8" fill="rgba(200,255,0,0.06)"/><rect x="265" y="218" width="64" height="40" rx="8" fill="none" stroke="#c8ff00" stroke-width="2"/><rect x="348" y="218" width="64" height="40" rx="8" fill="rgba(200,255,0,0.06)"/><rect x="348" y="218" width="64" height="40" rx="8" fill="none" stroke="#c8ff00" stroke-width="2"/><line x1="329" y1="236" x2="348" y2="236" stroke="#c8ff00" stroke-width="2"/><line x1="265" y1="236" x2="218" y2="244" stroke="#c8ff00" stroke-width="2"/><line x1="412" y1="236" x2="462" y2="244" stroke="#c8ff00" stroke-width="2"/><ellipse cx="297" cy="238" rx="10" ry="9" fill="#1a0e08"/><ellipse cx="377" cy="238" rx="10" ry="9" fill="#1a0e08"/><circle cx="299" cy="236" r="3" fill="white"/><circle cx="379" cy="236" r="3" fill="white"/><path d="M268,212 Q297,204 328,208" fill="none" stroke="#2a1808" stroke-width="4" stroke-linecap="round"/><path d="M350,208 Q380,202 412,212" fill="none" stroke="#2a1808" stroke-width="4" stroke-linecap="round"/><path d="M335,252 Q330,278 316,290 Q330,296 340,294 Q350,296 364,290 Q350,278 345,252" fill="#7a5538"/><path d="M310,322 Q327,334 340,336 Q353,334 370,322" fill="none" stroke="#5a3820" stroke-width="3" stroke-linecap="round"/></svg>
-        </div>
-        <div class="founder-name">Kuljit Kondral</div>
-        <div class="founder-role">Research Director</div>
-        <p class="founder-bio">The oracle of insight. With 14 years decoding human behaviour, Kuljit lives and breathes the Double Diamond — diverging into chaos, converging into clarity. He doesn't just read data, he hears it. Our resident futures thinker, he maps where the world is going before anyone else has thought to look. Ask him about any trend; he'll tell you what it means in five years.</p>
-      </div>
-      <div class="founder-card reveal reveal-delay-2">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="500" fill="#0a0c14"/><line x1="60" y1="40" x2="60" y2="160" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="60" y1="160" x2="160" y2="160" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><circle cx="60" cy="40" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><circle cx="160" cy="100" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><line x1="620" y1="40" x2="620" y2="160" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><line x1="620" y1="160" x2="520" y2="160" stroke="rgba(200,255,0,0.07)" stroke-width="1"/><circle cx="620" cy="40" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><circle cx="520" cy="100" r="4" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1"/><ellipse cx="340" cy="600" rx="240" ry="180" fill="#0d1830"/><rect x="305" y="360" width="70" height="75" rx="4" fill="#b08858"/><ellipse cx="340" cy="230" rx="128" ry="148" fill="#c49a6c"/><ellipse cx="215" cy="240" rx="17" ry="24" fill="#b08858"/><ellipse cx="465" cy="240" rx="17" ry="24" fill="#b08858"/><ellipse cx="340" cy="110" rx="130" ry="85" fill="#1a1520"/><path d="M212,160 Q220,100 270,82 Q310,70 340,68 Q370,70 410,82 Q460,100 468,160" fill="#1a1520"/><ellipse cx="340" cy="340" rx="70" ry="35" fill="rgba(26,15,8,0.6)"/><ellipse cx="298" cy="228" rx="34" ry="25" fill="#b08858"/><ellipse cx="382" cy="228" rx="34" ry="25" fill="#b08858"/><ellipse cx="298" cy="230" rx="13" ry="11" fill="#1e1612"/><ellipse cx="382" cy="230" rx="13" ry="11" fill="#1e1612"/><circle cx="302" cy="227" r="4" fill="white"/><circle cx="386" cy="227" r="4" fill="white"/><path d="M265,204 Q298,194 331,199" fill="none" stroke="#1a1520" stroke-width="5" stroke-linecap="round"/><path d="M350,199 Q383,194 415,204" fill="none" stroke="#1a1520" stroke-width="5" stroke-linecap="round"/><path d="M334,244 Q326,270 313,282 Q328,289 340,287 Q352,289 367,282 Q354,268 346,244" fill="#a07848"/><path d="M308,316 Q330,330 355,326 Q368,322 376,314" fill="none" stroke="#7a5030" stroke-width="3" stroke-linecap="round"/></svg>
-        </div>
-        <div class="founder-name">Tolga Inam</div>
-        <div class="founder-role">Head of Tech & UX</div>
-        <p class="founder-bio">Two decades of building things that actually work — then making them beautiful. Tolga is our Dungeon Master: he architects the dungeons (systems), writes the rules (logic), and somehow always has a clever spell ready when the demo breaks. His command of AI, agentic systems, and web engineering is, frankly, unfair to everyone else in the room.</p>
-      </div>
-      <div class="founder-card reveal reveal-delay-3">
-        <div class="founder-avatar">
-          <svg viewBox="0 0 680 500" xmlns="http://www.w3.org/2000/svg"><rect width="680" height="500" fill="#0c0a10"/><rect x="50" y="30" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="62" y="30" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="74" y="30" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="62" y="42" width="10" height="10" fill="rgba(200,255,0,0.3)"/><rect x="616" y="30" width="10" height="10" fill="rgba(200,255,0,0.06)"/><rect x="628" y="30" width="10" height="10" fill="rgba(200,255,0,0.3)"/><rect x="616" y="42" width="10" height="10" fill="rgba(200,255,0,0.15)"/><rect x="628" y="42" width="10" height="10" fill="rgba(200,255,0,0.06)"/><line x1="0" y1="280" x2="200" y2="80" stroke="rgba(200,255,0,0.05)" stroke-width="1"/><line x1="680" y1="280" x2="480" y2="80" stroke="rgba(200,255,0,0.05)" stroke-width="1"/><circle cx="340" cy="220" r="170" fill="rgba(200,255,0,0.02)"/><ellipse cx="340" cy="600" rx="240" ry="175" fill="#1a0d2e"/><rect x="308" y="360" width="64" height="72" rx="4" fill="#c09060"/><ellipse cx="340" cy="232" rx="126" ry="145" fill="#d4a574"/><ellipse cx="216" cy="242" rx="17" ry="23" fill="#b8865a"/><ellipse cx="464" cy="242" rx="17" ry="23" fill="#b8865a"/><ellipse cx="340" cy="110" rx="128" ry="82" fill="#0a0810"/><path d="M214,158 Q218,97 265,78 Q302,64 340,62 Q378,64 415,78 Q462,97 466,158" fill="#0a0810"/><path d="M280,64 Q320,50 360,52 Q400,54 430,67" fill="none" stroke="#1a1228" stroke-width="3"/><path d="M355,52 Q370,47 385,52" fill="none" stroke="rgba(200,255,0,0.25)" stroke-width="2"/><ellipse cx="299" cy="228" rx="33" ry="24" fill="#b8865a"/><ellipse cx="381" cy="228" rx="33" ry="24" fill="#b8865a"/><ellipse cx="299" cy="230" rx="12" ry="10" fill="#1a1220"/><ellipse cx="381" cy="230" rx="12" ry="10" fill="#1a1220"/><circle cx="303" cy="227" r="3.5" fill="white"/><circle cx="385" cy="227" r="3.5" fill="white"/><path d="M268,202 Q299,191 330,196" fill="none" stroke="#0a0810" stroke-width="4.5" stroke-linecap="round"/><path d="M350,196 Q381,191 412,202" fill="none" stroke="#0a0810" stroke-width="4.5" stroke-linecap="round"/><path d="M335,245 Q327,271 314,283 Q328,290 340,288 Q352,290 366,283 Q353,271 345,245" fill="#b07848"/><path d="M305,316 Q325,333 340,336 Q355,333 375,316" fill="none" stroke="#8a5530" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="340" cy="332" rx="68" ry="28" fill="rgba(10,8,16,0.45)"/><rect x="490" y="80" width="52" height="8" rx="4" fill="#2a1a3a"/><rect x="526" y="74" width="20" height="20" rx="3" fill="rgba(200,255,0,0.15)" stroke="rgba(200,255,0,0.4)" stroke-width="1"/><circle cx="536" cy="84" r="4" fill="#c8ff00" opacity="0.6"/><path d="M490,108 Q500,116 515,113 Q528,110 535,118" fill="none" stroke="rgba(200,255,0,0.35)" stroke-width="2.5" stroke-linecap="round"/></svg>
-        </div>
-        <div class="founder-name">Baris Ertufan</div>
-        <div class="founder-role">Visual Director</div>
-        <p class="founder-bio">What happens when a gamer becomes a designer? You get someone who thinks in levels, not pages — who treats every screen as a world to be rendered and every interaction as a reward loop. With 14 years of digital UI craft, Baris builds animated bridges between raw creative vision and pixel-perfect reality. His gaming DNA makes him impossible to impress — which is exactly why every frame he ships is extraordinary.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-logo">Studio3<span>.design</span></div>
-    <ul class="footer-links">
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo" onclick="showPage('home')">Studio3<span>.design</span></a>
+    <ul class="nav-links">
       <li><a href="#" onclick="showPage('home')">Home</a></li>
       <li><a href="#" onclick="showPage('works')">Works</a></li>
-      <li><a href="#">Instagram</a></li>
+      <li><a href="#" onclick="showPage('about')">About</a></li>
+      <li><a href="#"
+          onclick="showPage('home'); setTimeout(()=>document.querySelector('.contact-section').scrollIntoView({behavior:'smooth'}),100)">Contact</a>
+      </li>
     </ul>
-    <span class="footer-copy">© 2024 Studio3.design</span>
-  </footer>
-</div>
+  </nav>
 
-<script>
-  // ═══ PAGE ROUTER ═══
-  function showPage(id) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById(id);
-    target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(initReveal, 100);
-  }
+  <!-- ═══════════════ HOME PAGE ═══════════════ -->
+  <div id="home" class="page active">
 
-  // ═══ CURSOR ═══
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+      </div>
+      <div class="intent-bg-text parallax-layer" data-speed="0.3"><span id="intentWord" class="intent-word-inner">INTENT-LED EXPERIENCES</span></div>
 
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
-  });
+      <div class="hero-eyebrow">Studio3.design — Est. 2024</div>
+      <h1 class="hero-title">
+        Design<br>
+        driven by<br>
+        <em>intent.</em>
+      </h1>
+      <div class="hero-bottom">
+        <p class="hero-desc">Three designers. One obsession.<br>We build experiences that begin with purpose and end with meaning.</p>
+        <div class="hero-scroll">
+          <div class="scroll-line"></div>
+          <span>Scroll</span>
+        </div>
+      </div>
+    </section>
 
-  (function animRing() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animRing);
-  })();
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <div class="marquee-item">Intent-Led Design</div>
+        <div class="marquee-item">UI/UX Systems</div>
+        <div class="marquee-item">Agentic AI</div>
+        <div class="marquee-item">Research</div>
+        <div class="marquee-item">Intent-Led Design</div>
+        <div class="marquee-item">UI/UX Systems</div>
+        <div class="marquee-item">Agentic AI</div>
+        <div class="marquee-item">Research</div>
+        <div class="marquee-item">Intent-Led Design</div>
+        <div class="marquee-item">UI/UX Systems</div>
+        <div class="marquee-item">Agentic AI</div>
+        <div class="marquee-item">Research</div>
+        <div class="marquee-item">Intent-Led Design</div>
+        <div class="marquee-item">UI/UX Systems</div>
+        <div class="marquee-item">Agentic AI</div>
+        <div class="marquee-item">Research</div>
+      </div>
+    </div>
 
-  document.querySelectorAll('a, button, .work-card, .service-item, .pillar, .founder-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '20px';
-      cursor.style.height = '20px';
-      ring.style.width = '60px';
-      ring.style.height = '60px';
+    <!-- INTENT SECTION -->
+    <section class="intent-section">
+      <div class="intent-label reveal">Our North Star</div>
+      <div class="intent-main">
+        <h2 class="intent-headline reveal">
+          Every pixel<br>
+          has a<br>
+          <em>reason</em><br>
+          to exist.
+        </h2>
+        <div class="intent-body reveal reveal-delay-2">
+          <p>Intent is not a feature — it's a <strong>philosophy</strong>. We believe that every design decision should
+            trace back to a human need, a behavioural truth, or a strategic goal.</p>
+          <p>We don't design surfaces. We design <strong>systems of meaning</strong> — where every interaction, every
+            transition, every word has been placed with deliberate purpose.</p>
+          <p>Intent-led experiences are <strong>felt before they're understood</strong>. They guide without instructing,
+            delight without distracting, and resolve without effort.</p>
+
+          <div class="pillars">
+            <div class="pillar reveal reveal-delay-1">
+              <span class="pillar-num">01</span>
+              <span class="pillar-name">UI/UX Design</span>
+              <span class="pillar-tag">Systems & Interfaces</span>
+            </div>
+            <div class="pillar reveal reveal-delay-2">
+              <span class="pillar-num">02</span>
+              <span class="pillar-name">Design Research</span>
+              <span class="pillar-tag">Insight & Behaviour</span>
+            </div>
+            <div class="pillar reveal reveal-delay-3">
+              <span class="pillar-num">03</span>
+              <span class="pillar-name">Agentic AI</span>
+              <span class="pillar-tag">Intelligent Automation</span>
+            </div>
+            <div class="pillar reveal reveal-delay-1" style="border-bottom:none;">
+              <span class="pillar-num">04</span>
+              <span class="pillar-name" style="color: var(--accent);">Intent-Led Experiences</span>
+              <span class="pillar-tag">Our Core</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDERS -->
+    <section class="founders-section">
+      <div class="section-label reveal">The Three</div>
+      <div class="founders-grid">
+
+        <div class="founder-card reveal reveal-delay-1">
+          <div class="founder-avatar">
+            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Kuljit Kondral</div>
+          <div class="founder-role">Research Director</div>
+          <p class="founder-bio">The oracle of insight. With 14 years decoding human behaviour, Kuljit lives and
+            breathes the Double Diamond — diverging into chaos, converging into clarity. He doesn't just read data, he
+            hears it. Our resident futures thinker, he maps where the world is going before anyone else has thought to
+            look.</p>
+        </div>
+
+        <div class="founder-card reveal reveal-delay-2">
+          <div class="founder-avatar">
+            <img src="images/founder-baris.png" alt="Tolga Inam" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Tolga Inam</div>
+          <div class="founder-role">Head of Tech &amp; UX</div>
+          <p class="founder-bio">Two decades of building things that actually work — then making them beautiful. Tolga
+            is our Dungeon Master: he architects the dungeons (systems), writes the rules (logic), and somehow always
+            has a clever spell ready when the demo breaks. His command of AI and web tech is, frankly, unfair.</p>
+        </div>
+
+        <div class="founder-card reveal reveal-delay-3">
+          <div class="founder-avatar">
+            <img src="images/founder-tolga.png" alt="Baris Ertufan" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Baris Ertufan</div>
+          <div class="founder-role">Visual Director</div>
+          <p class="founder-bio">What happens when a gamer becomes a designer? You get someone who thinks in levels, not
+            pages — who treats every screen as a world to be rendered and every interaction as a reward loop. With 14
+            years of digital UI craft, Baris builds animated bridges between raw vision and pixel-perfect reality.</p>
+        </div>
+
+      </div>
+    </section>
+    <!-- SERVICES -->
+    <section class="services-section">
+      <div class="section-label reveal">What We Do</div>
+      <div class="services-list">
+        <div class="service-item reveal">
+          <div class="service-name">Intent Mapping</div>
+          <div class="service-meta">
+            <span class="service-tag">Core Offering</span>
+            <span class="service-arrow">→</span>
+          </div>
+        </div>
+        <div class="service-item reveal reveal-delay-1">
+          <div class="service-name">UI/UX Systems</div>
+          <div class="service-meta">
+            <span class="service-tag">Design</span>
+            <span class="service-arrow">→</span>
+          </div>
+        </div>
+        <div class="service-item reveal reveal-delay-2">
+          <div class="service-name">AI Experience Design</div>
+          <div class="service-meta">
+            <span class="service-tag">Emerging Tech</span>
+            <span class="service-arrow">→</span>
+          </div>
+        </div>
+        <div class="service-item reveal reveal-delay-3">
+          <div class="service-name">Behavioural Research</div>
+          <div class="service-meta">
+            <span class="service-tag">Research</span>
+            <span class="service-arrow">→</span>
+          </div>
+        </div>
+        <div class="service-item reveal">
+          <div class="service-name">Agentic Interfaces</div>
+          <div class="service-meta">
+            <span class="service-tag">Frontier</span>
+            <span class="service-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section">
+      <div class="contact-inner">
+        <div>
+          <div class="section-label reveal">Let's Talk</div>
+          <h2 class="contact-headline reveal">Start with<br><em>intent.</em></h2>
+        </div>
+        <form class="contact-form reveal reveal-delay-2" onsubmit="return false;">
+          <div class="form-field">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name">
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" placeholder="hello@example.com">
+          </div>
+          <div class="form-field">
+            <label>What are you building?</label>
+            <textarea placeholder="Tell us about your project and its intent..."></textarea>
+          </div>
+          <button class="btn-submit"><span>Send Message →</span></button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">Studio3<span>.design</span></div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('works')">Works</a></li>
+        <li><a href="#" onclick="showPage('about')">About</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+      <span class="footer-copy">© 2024 Studio3.design</span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════ WORKS PAGE ═══════════════ -->
+  <div id="works" class="page">
+
+    <section class="works-hero">
+      <div class="works-hero-bg"></div>
+      <div class="works-title parallax-layer" data-speed="0.2">
+        Selected<br><em>Works</em>
+      </div>
+      <p class="works-subtitle">Intent in action — twelve projects, one obsession</p>
+    </section>
+
+    <div class="filter-bar">
+      <span class="filter-label">Filter</span>
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">UI/UX</button>
+      <button class="filter-btn">Research</button>
+      <button class="filter-btn">AI</button>
+      <button class="filter-btn">Intent</button>
+    </div>
+
+    <div class="works-grid">
+
+      <!-- Project 1 — Large -->
+      <div class="work-card large reveal">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="800" height="500" fill="#0f0f0d" />
+            <rect x="0" y="0" width="800" height="500" fill="url(#g1)" />
+            <defs>
+              <radialGradient id="g1" cx="30%" cy="60%" r="70%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="0" y1="400" x2="800" y2="400" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="200" y1="0" x2="200" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="400" y1="0" x2="400" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <line x1="600" y1="0" x2="600" y2="500" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <circle cx="160" cy="280" r="120" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1" />
+            <circle cx="160" cy="280" r="80" fill="none" stroke="rgba(200,255,0,0.06)" stroke-width="1" />
+            <circle cx="160" cy="280" r="40" fill="rgba(200,255,0,0.1)" />
+            <text x="400" y="270" font-family="serif" font-size="72" fill="rgba(240,237,230,0.06)" text-anchor="middle"
+              font-style="italic">Meridian</text>
+            <rect x="300" y="320" width="200" height="2" fill="rgba(200,255,0,0.3)" />
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">UI/UX · Intent</span>
+            <span class="work-year">2024</span>
+          </div>
+          <h3 class="work-title">Meridian Platform</h3>
+          <p class="work-desc">Enterprise dashboard redesign focused on intent-mapping. Users accomplish goals 40%
+            faster with zero onboarding.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 2 — Small -->
+      <div class="work-card small reveal reveal-delay-1">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="500" fill="#0d0f0a" />
+            <defs>
+              <radialGradient id="g2" cx="70%" cy="30%" r="60%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.2" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#g2)" />
+            <rect x="60" y="80" width="280" height="340" rx="8" fill="none" stroke="rgba(200,255,0,0.1)"
+              stroke-width="1" />
+            <rect x="80" y="120" width="240" height="16" rx="4" fill="rgba(200,255,0,0.08)" />
+            <rect x="80" y="148" width="180" height="8" rx="4" fill="rgba(240,237,230,0.04)" />
+            <rect x="80" y="200" width="240" height="120" rx="6" fill="rgba(200,255,0,0.05)" />
+            <rect x="80" y="340" width="100" height="32" rx="4" fill="rgba(200,255,0,0.15)" />
+            <text x="200" y="465" font-family="serif" font-size="40" fill="rgba(240,237,230,0.04)" text-anchor="middle"
+              font-style="italic">Vela</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Mobile · AI</span>
+            <span class="work-year">2024</span>
+          </div>
+          <h3 class="work-title">Vela App</h3>
+          <p class="work-desc">AI-powered task manager that learns user intent from behaviour.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 3 — Medium -->
+      <div class="work-card medium reveal reveal-delay-1">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="375" fill="#080a0a" />
+            <defs>
+              <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.1" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <rect width="600" height="375" fill="url(#g3)" />
+            <polygon points="300,50 520,200 300,350 80,200" fill="none" stroke="rgba(200,255,0,0.07)"
+              stroke-width="1" />
+            <polygon points="300,100 460,200 300,300 140,200" fill="none" stroke="rgba(200,255,0,0.05)"
+              stroke-width="1" />
+            <polygon points="300,150 400,200 300,250 200,200" fill="rgba(200,255,0,0.06)" />
+            <circle cx="300" cy="200" r="8" fill="rgba(200,255,0,0.6)" />
+            <text x="300" y="340" font-family="serif" font-size="36" fill="rgba(240,237,230,0.05)" text-anchor="middle"
+              font-style="italic">Kairos</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Research · Strategy</span>
+            <span class="work-year">2024</span>
+          </div>
+          <h3 class="work-title">Kairos Research System</h3>
+          <p class="work-desc">A continuous research platform turning user signals into strategic design decisions in
+            real time.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 4 — Medium -->
+      <div class="work-card medium reveal reveal-delay-2">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="375" fill="#0a0a08" />
+            <defs>
+              <radialGradient id="g4" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.12" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="600" height="375" fill="url(#g4)" />
+            <circle cx="300" cy="187" r="140" fill="none" stroke="rgba(200,255,0,0.06)" stroke-width="1"
+              stroke-dasharray="4 8" />
+            <circle cx="300" cy="187" r="90" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1" />
+            <circle cx="300" cy="187" r="40" fill="none" stroke="rgba(200,255,0,0.15)" stroke-width="1" />
+            <circle cx="300" cy="187" r="6" fill="rgba(200,255,0,0.8)" />
+            <line x1="300" y1="47" x2="300" y2="327" stroke="rgba(200,255,0,0.04)" stroke-width="1" />
+            <line x1="160" y1="187" x2="440" y2="187" stroke="rgba(200,255,0,0.04)" stroke-width="1" />
+            <text x="300" y="360" font-family="serif" font-size="32" fill="rgba(240,237,230,0.05)" text-anchor="middle"
+              font-style="italic">Orion</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Agentic AI · UX</span>
+            <span class="work-year">2023</span>
+          </div>
+          <h3 class="work-title">Orion Agent Interface</h3>
+          <p class="work-desc">Conversational UI for a multi-agent AI system, designed for transparency and trust.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 5 — Wide -->
+      <div class="work-card wide reveal">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 1200 460" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="1200" height="460" fill="#070809" />
+            <defs>
+              <linearGradient id="g5" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.12" />
+                <stop offset="50%" stop-color="#c8ff00" stop-opacity="0.04" />
+                <stop offset="100%" stop-color="#c8ff00" stop-opacity="0.12" />
+              </linearGradient>
+            </defs>
+            <rect width="1200" height="460" fill="url(#g5)" />
+            <line x1="0" y1="230" x2="1200" y2="230" stroke="rgba(200,255,0,0.06)" stroke-width="1" />
+            <rect x="100" y="130" width="180" height="200" rx="4" fill="rgba(200,255,0,0.04)"
+              stroke="rgba(200,255,0,0.08)" stroke-width="1" />
+            <rect x="320" y="100" width="180" height="260" rx="4" fill="rgba(200,255,0,0.06)"
+              stroke="rgba(200,255,0,0.1)" stroke-width="1" />
+            <rect x="540" y="80" width="180" height="300" rx="4" fill="rgba(200,255,0,0.08)"
+              stroke="rgba(200,255,0,0.12)" stroke-width="1" />
+            <rect x="760" y="100" width="180" height="260" rx="4" fill="rgba(200,255,0,0.06)"
+              stroke="rgba(200,255,0,0.1)" stroke-width="1" />
+            <rect x="980" y="130" width="180" height="200" rx="4" fill="rgba(200,255,0,0.04)"
+              stroke="rgba(200,255,0,0.08)" stroke-width="1" />
+            <text x="600" y="440" font-family="serif" font-size="56" fill="rgba(240,237,230,0.04)" text-anchor="middle"
+              font-style="italic">Threshold</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Intent · End-to-End</span>
+            <span class="work-year">2024</span>
+          </div>
+          <h3 class="work-title">Threshold — Brand & System</h3>
+          <p class="work-desc">Full brand identity, design system, and product interface for a Series B fintech. Every
+            touchpoint mapped back to user intent archetypes.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 6 — Small -->
+      <div class="work-card small reveal reveal-delay-1">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="500" fill="#0a0a0d" />
+            <defs>
+              <radialGradient id="g6" cx="50%" cy="70%" r="60%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.18" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="400" height="500" fill="url(#g6)" />
+            <rect x="60" y="60" width="280" height="380" rx="20" fill="none" stroke="rgba(200,255,0,0.1)"
+              stroke-width="1" />
+            <rect x="80" y="160" width="240" height="180" rx="8" fill="rgba(200,255,0,0.05)" />
+            <circle cx="200" cy="250" r="50" fill="rgba(200,255,0,0.08)" stroke="rgba(200,255,0,0.2)"
+              stroke-width="1" />
+            <text x="200" y="465" font-family="serif" font-size="36" fill="rgba(240,237,230,0.05)" text-anchor="middle"
+              font-style="italic">Luma</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Mobile · Research</span>
+            <span class="work-year">2023</span>
+          </div>
+          <h3 class="work-title">Luma Health</h3>
+          <p class="work-desc">Patient-facing health app. Research-led design for complex medical intent.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 7 — Large -->
+      <div class="work-card large reveal reveal-delay-2">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="800" height="500" fill="#080a08" />
+            <defs>
+              <radialGradient id="g7" cx="60%" cy="40%" r="65%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.13" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="800" height="500" fill="url(#g7)" />
+            <line x1="0" y1="0" x2="800" y2="500" stroke="rgba(200,255,0,0.04)" stroke-width="1" />
+            <line x1="800" y1="0" x2="0" y2="500" stroke="rgba(200,255,0,0.04)" stroke-width="1" />
+            <circle cx="400" cy="250" r="200" fill="none" stroke="rgba(200,255,0,0.05)" stroke-width="1" />
+            <circle cx="400" cy="250" r="150" fill="none" stroke="rgba(200,255,0,0.04)" stroke-width="1" />
+            <circle cx="400" cy="250" r="100" fill="none" stroke="rgba(200,255,0,0.08)" stroke-width="1" />
+            <circle cx="400" cy="250" r="50" fill="rgba(200,255,0,0.06)" />
+            <text x="400" y="470" font-family="serif" font-size="56" fill="rgba(240,237,230,0.05)" text-anchor="middle"
+              font-style="italic">Atlas</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Agentic AI · Intent</span>
+            <span class="work-year">2024</span>
+          </div>
+          <h3 class="work-title">Atlas Navigation System</h3>
+          <p class="work-desc">Wayfinding interface for a complex multi-modal transit network. Agentic AI infers
+            destination intent before the user finishes typing.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 8 — Medium -->
+      <div class="work-card medium reveal reveal-delay-1">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="375" fill="#09090b" />
+            <defs>
+              <linearGradient id="g8" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.08" />
+                <stop offset="100%" stop-color="#c8ff00" stop-opacity="0.15" />
+              </linearGradient>
+            </defs>
+            <rect width="600" height="375" fill="url(#g8)" />
+            <rect x="40" y="40" width="200" height="140" rx="6" fill="rgba(200,255,0,0.05)" stroke="rgba(200,255,0,0.1)"
+              stroke-width="1" />
+            <rect x="40" y="200" width="200" height="140" rx="6" fill="rgba(200,255,0,0.03)"
+              stroke="rgba(200,255,0,0.07)" stroke-width="1" />
+            <rect x="260" y="40" width="300" height="300" rx="6" fill="rgba(200,255,0,0.07)"
+              stroke="rgba(200,255,0,0.12)" stroke-width="1" />
+            <circle cx="410" cy="190" r="60" fill="rgba(200,255,0,0.08)" />
+            <text x="300" y="360" font-family="serif" font-size="30" fill="rgba(240,237,230,0.04)" text-anchor="middle"
+              font-style="italic">Forma</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Design System</span>
+            <span class="work-year">2023</span>
+          </div>
+          <h3 class="work-title">Forma Design System</h3>
+          <p class="work-desc">500-component system built on intent-first principles for a Series A SaaS company.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+      <!-- Project 9 — Medium -->
+      <div class="work-card medium reveal reveal-delay-2">
+        <div class="work-card-img">
+          <svg class="img-bg" viewBox="0 0 600 375" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice">
+            <rect width="600" height="375" fill="#0a0806" />
+            <defs>
+              <radialGradient id="g9" cx="20%" cy="80%" r="70%">
+                <stop offset="0%" stop-color="#c8ff00" stop-opacity="0.15" />
+                <stop offset="100%" stop-color="#0a0a08" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <rect width="600" height="375" fill="url(#g9)" />
+            <path d="M0,300 Q150,100 300,200 Q450,300 600,100" fill="none" stroke="rgba(200,255,0,0.1)"
+              stroke-width="2" />
+            <path d="M0,350 Q150,150 300,250 Q450,350 600,150" fill="none" stroke="rgba(200,255,0,0.06)"
+              stroke-width="1" />
+            <circle cx="300" cy="200" r="12" fill="rgba(200,255,0,0.6)" />
+            <circle cx="150" cy="180" r="6" fill="rgba(200,255,0,0.3)" />
+            <circle cx="450" cy="220" r="6" fill="rgba(200,255,0,0.3)" />
+            <text x="300" y="360" font-family="serif" font-size="30" fill="rgba(240,237,230,0.04)" text-anchor="middle"
+              font-style="italic">Pulse</text>
+          </svg>
+        </div>
+        <div class="work-card-info">
+          <div class="work-card-meta">
+            <span class="work-tag">Research · Data Viz</span>
+            <span class="work-year">2023</span>
+          </div>
+          <h3 class="work-title">Pulse Analytics</h3>
+          <p class="work-desc">Real-time user intent analytics dashboard — designed for design teams, not data
+            scientists.</p>
+        </div>
+        <div class="work-hover-overlay"></div>
+        <div class="work-cta">→</div>
+      </div>
+
+    </div><!-- end works-grid -->
+
+    <footer>
+      <div class="footer-logo">Studio3<span>.design</span></div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('about')">About</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+      <span class="footer-copy">© 2024 Studio3.design</span>
+    </footer>
+  </div>
+
+  <!-- ═══════════════ ABOUT PAGE ═══════════════ -->
+  <div id="about" class="page">
+
+    <section class="about-hero">
+      <div class="about-hero-bg"></div>
+      <h1 class="about-headline">
+        Three minds,<br>
+        one <em>intent.</em>
+      </h1>
+    </section>
+
+    <div class="about-content">
+      <div class="about-text reveal">
+        <p>Studio3.design was founded on a belief that has guided every project since: <strong>design without intent is
+            decoration.</strong></p>
+        <p>We are three designers who met at the intersection of craft and cognition — where the way something works is
+          inseparable from the way it feels. We've spent our careers studying human behaviour, building AI systems, and
+          crafting interfaces that dissolve the distance between a person and their goal.</p>
+        <p>Our practice centres on <strong>intent-led experience design</strong> — a methodology that starts not with
+          wireframes or user stories, but with a deep excavation of what people actually want to accomplish, and why. We
+          map the gap between stated and latent intent, then design experiences that bridge it.</p>
+        <p>We work with early-stage startups, scaling platforms, and enterprise teams who believe that <strong>the
+            quality of the experience is the quality of the product.</strong></p>
+      </div>
+      <div class="about-stats reveal reveal-delay-2">
+        <div class="stat">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Founding Designers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">12</span>
+          <span class="stat-label">Industry Awards</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Intent-Led</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founders full section on About -->
+    <section class="founders-section" style="padding-top:80px;">
+      <div class="section-label reveal">The Founders</div>
+      <div class="founders-grid">
+        <div class="founder-card reveal reveal-delay-1">
+          <div class="founder-avatar">
+            <img src="images/founder-kuljit.jpg" alt="Kuljit Kondral" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Kuljit Kondral</div>
+          <div class="founder-role">Research Director</div>
+          <p class="founder-bio">The oracle of insight. With 14 years decoding human behaviour, Kuljit lives and
+            breathes the Double Diamond — diverging into chaos, converging into clarity. He doesn't just read data, he
+            hears it. Our resident futures thinker, he maps where the world is going before anyone else has thought to
+            look. Ask him about any trend; he'll tell you what it means in five years.</p>
+        </div>
+        <div class="founder-card reveal reveal-delay-2">
+          <div class="founder-avatar">
+            <img src="images/founder-baris.png" alt="Tolga Inam" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Tolga Inam</div>
+          <div class="founder-role">Head of Tech & UX</div>
+          <p class="founder-bio">Two decades of building things that actually work — then making them beautiful. Tolga
+            is our Dungeon Master: he architects the dungeons (systems), writes the rules (logic), and somehow always
+            has a clever spell ready when the demo breaks. His command of AI, agentic systems, and web engineering is,
+            frankly, unfair to everyone else in the room.</p>
+        </div>
+        <div class="founder-card reveal reveal-delay-3">
+          <div class="founder-avatar">
+            <img src="images/founder-tolga.png" alt="Baris Ertufan" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="founder-name">Baris Ertufan</div>
+          <div class="founder-role">Visual Director</div>
+          <p class="founder-bio">What happens when a gamer becomes a designer? You get someone who thinks in levels, not
+            pages — who treats every screen as a world to be rendered and every interaction as a reward loop. With 14
+            years of digital UI craft, Baris builds animated bridges between raw creative vision and pixel-perfect
+            reality. His gaming DNA makes him impossible to impress — which is exactly why every frame he ships is
+            extraordinary.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-logo">Studio3<span>.design</span></div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('works')">Works</a></li>
+        <li><a href="#">Instagram</a></li>
+      </ul>
+      <span class="footer-copy">© 2024 Studio3.design</span>
+    </footer>
+  </div>
+
+  <script>
+    // ═══ PAGE ROUTER ═══
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(id);
+      target.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(initReveal, 100);
+    }
+
+    // ═══ CURSOR ═══
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
     });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '10px';
-      cursor.style.height = '10px';
-      ring.style.width = '40px';
-      ring.style.height = '40px';
-    });
-  });
 
-  // ═══ PARALLAX ═══
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    document.querySelectorAll('.parallax-layer').forEach(el => {
-      const speed = parseFloat(el.dataset.speed) || 0.2;
-      el.style.transform = `translateY(${scrollY * speed}px)`;
-    });
-  });
+    (function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
 
-  // ═══ SCROLL REVEAL ═══
-  function initReveal() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    document.querySelectorAll('a, button, .work-card, .service-item, .pillar, .founder-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '20px';
+        cursor.style.height = '20px';
+        ring.style.width = '60px';
+        ring.style.height = '60px';
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.classList.remove('visible');
-      observer.observe(el);
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+        ring.style.width = '40px';
+        ring.style.height = '40px';
+      });
     });
-  }
-  initReveal();
 
-  // ═══ FILTER BUTTONS ═══
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+    // ═══ PARALLAX ═══
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      document.querySelectorAll('.parallax-layer').forEach(el => {
+        const speed = parseFloat(el.dataset.speed) || 0.2;
+        el.style.transform = `translateY(${scrollY * speed}px)`;
+      });
     });
-  });
 
-  // ═══ NAV ACTIVE STATE ═══
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', function() {
-      document.querySelectorAll('.nav-links a').forEach(a => a.style.opacity = '0.5');
-      this.style.opacity = '1';
+    // ═══ SCROLL REVEAL ═══
+    function initReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
+    }
+    initReveal();
+
+    // ═══ FILTER BUTTONS ═══
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
     });
-  });
-</script>
+
+    // ═══ NAV ACTIVE STATE ═══
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function () {
+        document.querySelectorAll('.nav-links a').forEach(a => a.style.opacity = '0.5');
+        this.style.opacity = '1';
+      });
+    });
+  </script>
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255,255,255,0.3)";
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // ═══ BG TEXT CYCLE ═══
+    const intentWordsArray = [
+      "Intent-led experiences",
+      "UI/UX",
+      "Research & Insights",
+      "Future thinking",
+      "Agentic Interfaces"
+    ];
+    let intentWordIndex = 0;
+    const intentWordEl = document.getElementById('intentWord');
+    if (intentWordEl) {
+      setInterval(() => {
+        intentWordEl.style.opacity = '0';
+        setTimeout(() => {
+          intentWordIndex = (intentWordIndex + 1) % intentWordsArray.length;
+          intentWordEl.textContent = intentWordsArray[intentWordIndex].toUpperCase();
+          intentWordEl.style.opacity = '1';
+        }, 500);
+      }, 3000);
+    }
+  </script>
 </body>
+
 </html>

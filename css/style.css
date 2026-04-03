@@ -1,1 +1,69 @@
 /* main styles */
+:root {
+    --col: 8.33vw;
+    /* 1 column in a 12-column grid */
+}
+
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+body {
+    margin: 0;
+    background: #0a0a0a;
+}
+
+/* ═══ 1-COLUMN MARGIN SYSTEM ═══ */
+
+/* Navigation */
+nav {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* Hero section — align title with the 1-column margin */
+.hero {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* All major content sections */
+.intent-section,
+.founders-section,
+.services-section,
+.contact-section,
+.about-content,
+.works-grid {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* Works hero */
+.works-hero {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* Filter bar */
+.filter-bar {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* Footer */
+footer {
+    padding-left: var(--col) !important;
+    padding-right: var(--col) !important;
+}
+
+/* Responsive: tighten margin on small screens */
+@media (max-width: 768px) {
+    :root {
+        --col: 6vw;
+    }
+}
