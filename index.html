@@ -1312,7 +1312,6 @@
 </head>
 
 <body>
-  <canvas id="particles"></canvas>
   <!-- CUSTOM CURSOR -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
@@ -1336,12 +1335,11 @@
 
     <section class="hero">
       <div class="hero-bg">
+        <canvas id="particles"></canvas>
         <div class="hero-bg-grid"></div>
         <div class="hero-orb orb-1"></div>
         <div class="hero-orb orb-2"></div>
       </div>
-      <div class="intent-bg-text parallax-layer" data-speed="0.3"><span id="intentWord"
-          class="intent-word-inner">INTENT-LED<br>EXPERIENCES</span></div>
 
       <div class="hero-eyebrow">Studio3.design — Est. 2024</div>
       <h1 class="hero-title">
@@ -2322,26 +2320,7 @@
 
     animate();
 
-    // ═══ BG TEXT CYCLE ═══
-    const intentWordsArray = [
-      "Intent-led<br>experiences",
-      "UI/UX",
-      "Research & Insights",
-      "Future thinking",
-      "Agentic Interfaces"
-    ];
-    let intentWordIndex = 0;
-    const intentWordEl = document.getElementById('intentWord');
-    if (intentWordEl) {
-      setInterval(() => {
-        intentWordEl.style.opacity = '0';
-        setTimeout(() => {
-          intentWordIndex = (intentWordIndex + 1) % intentWordsArray.length;
-          intentWordEl.innerHTML = intentWordsArray[intentWordIndex].toUpperCase();
-          intentWordEl.style.opacity = '1';
-        }, 500);
-      }, 3000);
-    }
+
   </script>
 </body>
 
