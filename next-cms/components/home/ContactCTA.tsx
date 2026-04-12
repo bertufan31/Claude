@@ -66,7 +66,7 @@ export default function ContactCTA() {
     <section
       ref={sectionRef}
       onMouseMove={onMouseMove}
-      className="relative py-48 px-[8.33vw] border-t overflow-hidden cursor-none"
+      className="relative py-48 px-site border-t overflow-hidden cursor-none"
       style={{
         borderColor: 'rgba(240,237,230,0.1)',
         background: hovered ? '#c8ff00' : '#0a0a08',

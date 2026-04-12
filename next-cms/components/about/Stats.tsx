@@ -51,7 +51,7 @@ function CountUp({ end, suffix }: { end: number; suffix: string }) {
 export default function Stats() {
   return (
     <section
-      className="py-40 px-[8.33vw] border-t"
+      className="py-40 px-site border-t"
       style={{ borderColor: 'rgba(240,237,230,0.1)' }}
     >
       <div className="grid grid-cols-2 md:grid-cols-4 gap-0.5">

@@ -94,7 +94,7 @@ export default function WorksGrid() {
     <div>
       {/* Filter bar */}
       <div
-        className="flex items-center gap-2 px-[8.33vw] py-8 border-b"
+        className="flex items-center gap-2 px-site py-8 border-b"
         style={{ borderColor: 'rgba(240,237,230,0.1)' }}
       >
         <span
@@ -124,7 +124,7 @@ export default function WorksGrid() {
       {/* Grid */}
       <motion.div
         layout
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0.5 p-0.5 px-[8.33vw] py-16"
+        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-0.5 p-0.5 px-site py-16"
       >
         <AnimatePresence mode="popLayout">
           {filtered.map(p => (

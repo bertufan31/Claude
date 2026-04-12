@@ -87,7 +87,7 @@ function FounderCard({ founder, index }: { founder: (typeof FOUNDERS)[0]; index:
 export default function Founders() {
   return (
     <section
-      className="py-40 px-[8.33vw] border-t"
+      className="py-40 px-site border-t"
       style={{ borderColor: 'rgba(240,237,230,0.1)' }}
     >
       <div className="flex items-center gap-4 mb-20">

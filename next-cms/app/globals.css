@@ -185,6 +185,12 @@ body::after {
   pointer-events: none;
 }
 
+/* ═══ SITE MARGIN ═══ */
+.px-site {
+  padding-left: 8.33vw;
+  padding-right: 8.33vw;
+}
+
 /* ═══ BLINK CURSOR ═══ */
 @keyframes blink { 50% { opacity: 0; } }
 .blink { animation: blink 1.2s step-end infinite; }

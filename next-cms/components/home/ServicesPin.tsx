@@ -73,7 +73,7 @@ export default function ServicesPin() {
   return (
     <div ref={sectionRef} className="overflow-hidden" style={{ background: '#0a0a08' }}>
       {/* Section label */}
-      <div className="absolute top-0 left-0 right-0 z-10 flex items-center gap-4 px-[8.33vw] pt-10 pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-10 flex items-center gap-4 px-site pt-10 pointer-events-none">
         <span style={{ width: 32, height: 1, background: '#c8ff00', display: 'inline-block' }} />
         <span
           className="uppercase tracking-[0.2em]"
@@ -99,7 +99,7 @@ export default function ServicesPin() {
         {SERVICES.map((s, i) => (
           <div
             key={s.num}
-            className="service-panel relative flex items-center px-[8.33vw] border-r"
+            className="service-panel relative flex items-center px-site border-r"
             style={{ borderColor: 'rgba(240,237,230,0.06)' }}
           >
             {/* Ghost number background */}

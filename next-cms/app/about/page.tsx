@@ -12,7 +12,7 @@ export default function AboutPage() {
     <main>
       {/* Hero */}
       <section
-        className="min-h-[65vh] flex flex-col justify-end pt-40 px-[8.33vw] pb-20 relative overflow-hidden"
+        className="min-h-[65vh] flex flex-col justify-end pt-40 px-site pb-20 relative overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -48,7 +48,7 @@ export default function AboutPage() {
 
       {/* Story */}
       <section
-        className="py-32 px-[8.33vw] border-t"
+        className="py-32 px-site border-t"
         style={{ borderColor: 'rgba(240,237,230,0.1)' }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20">

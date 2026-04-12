@@ -11,7 +11,7 @@ export default function WorksPage() {
     <main>
       {/* Hero */}
       <section
-        className="min-h-[55vh] flex flex-col justify-end pt-40 px-[8.33vw] pb-16 relative overflow-hidden"
+        className="min-h-[55vh] flex flex-col justify-end pt-40 px-site pb-16 relative overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"

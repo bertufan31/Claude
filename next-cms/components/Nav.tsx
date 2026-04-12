@@ -58,8 +58,10 @@ export default function Nav() {
       style={{
         transform: visible ? 'translateY(0)' : 'translateY(-100%)',
         transition: 'transform 0.4s cubic-bezier(0.76,0,0.24,1), background 0.4s ease',
+        paddingLeft: '8.33vw',
+        paddingRight: '8.33vw',
       }}
-      className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center px-[8.33vw] py-7"
+      className="fixed top-0 left-0 right-0 z-[100] flex justify-between items-center py-7"
     >
       <Link
         href="/"

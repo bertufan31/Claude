@@ -9,7 +9,7 @@ export default function BlogPage() {
   return (
     <main>
       {/* Hero */}
-      <section className="min-h-[50vh] flex flex-col justify-end pt-40 px-[8.33vw] pb-16 relative overflow-hidden">
+      <section className="min-h-[50vh] flex flex-col justify-end pt-40 px-site pb-16 relative overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: 'radial-gradient(ellipse at 20% 80%, rgba(200,255,0,0.04), transparent 50%)' }}
@@ -48,7 +48,7 @@ export default function BlogPage() {
 
       {/* Posts */}
       <section
-        className="py-24 px-[8.33vw] border-t"
+        className="py-24 px-site border-t"
         style={{ borderColor: 'rgba(240,237,230,0.1)' }}
       >
         <div className="flex flex-col">

@@ -165,7 +165,7 @@ export default function WorksPreview() {
 
   return (
     <section
-      className="py-40 px-[8.33vw] border-t"
+      className="py-40 px-site border-t"
       style={{ borderColor: 'rgba(240,237,230,0.1)' }}
     >
       {/* Label */}

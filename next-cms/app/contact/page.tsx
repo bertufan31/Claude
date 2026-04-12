@@ -39,7 +39,7 @@ export default function ContactPage() {
 
   return (
     <main>
-      <section className="min-h-screen pt-40 px-[8.33vw] pb-32">
+      <section className="min-h-screen pt-40 px-site pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           {/* Left — headline */}
           <div>
